@@ -1,0 +1,18 @@
+.botaoWhatsApp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaco-2);
+  min-height: var(--area-toque-minima);
+  padding: var(--espaco-3) var(--espaco-5);
+  border-radius: var(--raio-borda);
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.botaoWhatsApp:hover {
+  background-color: var(--cor-destaque-escura);
+}

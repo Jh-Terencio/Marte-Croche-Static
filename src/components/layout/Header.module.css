@@ -1,0 +1,79 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: var(--cor-fundo);
+  /* linha tracejada: costura — assinatura discreta da marca */
+  border-bottom: 1px dashed var(--cor-borda);
+}
+
+.conteudo {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: var(--espaco-2) var(--espaco-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+}
+
+.logo {
+  font-family: var(--fonte-titulos);
+  font-size: var(--texto-grande);
+  font-weight: 700;
+  color: var(--cor-destaque);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo em {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-2);
+}
+
+.botaoMenu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--area-toque-minima);
+  min-height: var(--area-toque-minima);
+  background: none;
+  border: none;
+  color: var(--cor-texto);
+  border-radius: var(--raio-borda-pequeno);
+}
+
+.botaoMenu:hover {
+  color: var(--cor-destaque);
+}
+
+/* Painel do menu no celular */
+.menu {
+  display: none;
+}
+
+.menuAberto {
+  display: block;
+  border-top: 1px dashed var(--cor-borda);
+  padding: var(--espaco-3) var(--espaco-4) var(--espaco-4);
+}
+
+@media (min-width: 768px) {
+  .botaoMenu {
+    display: none;
+  }
+
+  .menu,
+  .menuAberto {
+    display: flex;
+    justify-content: center;
+    border-top: none;
+    padding: 0 var(--espaco-4) var(--espaco-2);
+  }
+}

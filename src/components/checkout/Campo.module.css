@@ -1,0 +1,42 @@
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+}
+
+.rotulo {
+  font-weight: 600;
+}
+
+.obrigatorio {
+  color: var(--cor-destaque);
+}
+
+.opcional {
+  font-weight: 400;
+  font-size: var(--texto-pequeno);
+  color: var(--cor-texto-suave);
+}
+
+.entrada {
+  min-height: var(--area-toque-minima);
+  padding: var(--espaco-2) var(--espaco-3);
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  background-color: var(--cor-branco);
+  width: 100%;
+}
+
+.entrada:focus {
+  border-color: var(--cor-destaque);
+  outline: none;
+}
+
+.entrada[aria-invalid='true'] {
+  border-color: var(--cor-erro);
+}
+
+textarea.entrada {
+  min-height: 5rem;
+  resize: vertical;
+}

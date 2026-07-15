@@ -1,0 +1,111 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cor-branco);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  overflow: hidden;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card:hover {
+  box-shadow: var(--sombra-suave);
+  transform: translateY(-2px);
+}
+
+.imagem {
+  --proporcao-imagem: 1 / 1;
+  border-radius: 0;
+}
+
+.corpo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  padding: var(--espaco-4);
+  flex: 1;
+}
+
+.categoria {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cor-destaque);
+}
+
+.nome {
+  font-size: var(--texto-grande);
+  color: var(--cor-texto);
+  margin: 0;
+}
+
+.preco {
+  font-family: var(--fonte-titulos);
+  font-size: var(--texto-grande);
+  color: var(--cor-destaque);
+}
+
+.aPartirDe {
+  display: block;
+  font-family: var(--fonte-texto);
+  font-size: 0.75rem;
+  color: var(--cor-texto-suave);
+}
+
+.detalhes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+  font-size: var(--texto-pequeno);
+  color: var(--cor-texto-suave);
+}
+
+.cores {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-1);
+}
+
+.amostraCor {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 1px solid var(--cor-borda);
+  display: inline-block;
+}
+
+.indisponivel {
+  align-self: flex-start;
+  background-color: var(--cor-fundo-secundario);
+  color: var(--cor-texto-suave);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: var(--espaco-1) var(--espaco-2);
+  border-radius: var(--raio-borda-pequeno);
+}
+
+.acao {
+  margin-top: auto;
+  padding-top: var(--espaco-3);
+}
+
+.botaoDetalhes {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: var(--area-toque-minima);
+  padding: var(--espaco-2) var(--espaco-4);
+  border: 1px solid var(--cor-destaque);
+  border-radius: var(--raio-borda);
+  color: var(--cor-destaque);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.botaoDetalhes:hover {
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+}

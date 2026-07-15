@@ -1,0 +1,35 @@
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+}
+
+.legendaObrigatorios {
+  font-size: var(--texto-pequeno);
+  color: var(--cor-texto-suave);
+}
+
+.linhaDupla {
+  display: grid;
+  gap: var(--espaco-4);
+}
+
+@media (min-width: 480px) {
+  .linhaDupla {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.acoes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  margin-top: var(--espaco-2);
+}
+
+@media (min-width: 480px) {
+  .acoes {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+  }
+}

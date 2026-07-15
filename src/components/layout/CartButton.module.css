@@ -1,0 +1,32 @@
+.carrinho {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--area-toque-minima);
+  min-height: var(--area-toque-minima);
+  color: var(--cor-texto);
+  text-decoration: none;
+  border-radius: var(--raio-borda-pequeno);
+}
+
+.carrinho:hover {
+  color: var(--cor-destaque);
+}
+
+.contador {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 var(--espaco-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+}

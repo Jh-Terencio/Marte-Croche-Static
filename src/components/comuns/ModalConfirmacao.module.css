@@ -1,0 +1,33 @@
+.fundo {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(43, 38, 34, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaco-4);
+  z-index: 100;
+}
+
+.caixa {
+  background-color: var(--cor-fundo);
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-suave);
+  padding: var(--espaco-5);
+  max-width: 26rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-4);
+}
+
+.descricao {
+  color: var(--cor-texto-suave);
+}
+
+.acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-3);
+  justify-content: flex-end;
+}

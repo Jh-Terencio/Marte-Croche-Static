@@ -1,0 +1,14 @@
+.pagina {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: var(--espaco-5) var(--espaco-4) 0;
+}
+
+.titulo {
+  margin-bottom: var(--espaco-2);
+}
+
+.subtitulo {
+  color: var(--cor-texto-suave);
+  margin-bottom: var(--espaco-5);
+}

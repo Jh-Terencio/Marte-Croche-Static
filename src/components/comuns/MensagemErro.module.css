@@ -1,0 +1,5 @@
+.erro {
+  color: var(--cor-erro);
+  font-size: var(--texto-pequeno);
+  margin-top: var(--espaco-1);
+}

@@ -1,0 +1,113 @@
+.footer {
+  margin-top: var(--espaco-7);
+  background-color: var(--cor-destaque);
+  color: var(--cor-fundo);
+  position: relative;
+}
+
+/* Assinatura da marca: borda em conchas de crochê no topo do footer */
+.footer::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -11px;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background-image: radial-gradient(
+    circle at 50% 100%,
+    var(--cor-destaque) 7px,
+    transparent 8px
+  );
+  background-size: 18px 12px;
+  background-position: bottom center;
+  background-repeat: repeat-x;
+}
+
+.conteudo {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: var(--espaco-6) var(--espaco-4) var(--espaco-5);
+  display: grid;
+  gap: var(--espaco-6);
+}
+
+.marca {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+}
+
+.nome {
+  font-family: var(--fonte-titulos);
+  font-size: var(--titulo-2);
+  color: var(--cor-fundo);
+  margin: 0;
+}
+
+.frase {
+  font-family: var(--fonte-titulos);
+  font-style: italic;
+  color: var(--cor-fundo);
+  opacity: 0.9;
+}
+
+.encomendas {
+  font-size: var(--texto-pequeno);
+  opacity: 0.85;
+  max-width: 28rem;
+}
+
+.titulo {
+  font-family: var(--fonte-texto);
+  font-size: var(--texto-pequeno);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cor-fundo);
+  opacity: 0.8;
+  margin-bottom: var(--espaco-3);
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+}
+
+.lista a {
+  color: var(--cor-fundo);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+}
+
+.lista a:hover {
+  text-decoration: underline;
+}
+
+.direitos {
+  border-top: 1px dashed rgba(244, 241, 235, 0.35);
+  padding-top: var(--espaco-4);
+  font-size: var(--texto-pequeno);
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .colunas {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--espaco-6);
+  }
+}
+
+@media (max-width: 767px) {
+  .colunas {
+    display: grid;
+    gap: var(--espaco-5);
+  }
+}

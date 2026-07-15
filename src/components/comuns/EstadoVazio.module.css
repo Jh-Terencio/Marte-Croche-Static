@@ -1,0 +1,13 @@
+.vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-3);
+  padding: var(--espaco-7) var(--espaco-4);
+  text-align: center;
+}
+
+.descricao {
+  color: var(--cor-texto-suave);
+  max-width: 32rem;
+}

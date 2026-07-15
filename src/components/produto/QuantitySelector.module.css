@@ -1,0 +1,54 @@
+.grupo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+}
+
+.rotulo {
+  font-weight: 600;
+}
+
+.controles {
+  display: inline-flex;
+  align-items: stretch;
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  overflow: hidden;
+  width: fit-content;
+  background-color: var(--cor-branco);
+}
+
+.botao {
+  width: var(--area-toque-minima);
+  min-height: var(--area-toque-minima);
+  border: none;
+  background: none;
+  color: var(--cor-destaque);
+  font-size: var(--texto-grande);
+  font-weight: 700;
+}
+
+.botao:hover:not(:disabled) {
+  background-color: var(--cor-destaque-suave);
+}
+
+.botao:disabled {
+  color: var(--cor-desabilitado);
+  cursor: not-allowed;
+}
+
+.campo {
+  width: 3.5rem;
+  border: none;
+  text-align: center;
+  font-weight: 600;
+  background: none;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.campo::-webkit-outer-spin-button,
+.campo::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

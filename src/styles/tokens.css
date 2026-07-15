@@ -1,0 +1,54 @@
+/*
+ * Tokens de design da Marte Crochê (Constituição §4/§11, spec FR-001/FR-002).
+ * Identidade: artesanal, elegante, delicada, acolhedora — nunca "tecnológica".
+ * Todo componente DEVE consumir estas variáveis; cores fora daqui são proibidas.
+ */
+:root {
+  /* Cores da marca */
+  --cor-fundo: #f4f1eb;
+  --cor-destaque: #681119;
+
+  /* Variações da cor de destaque (hover, estados) */
+  --cor-destaque-escura: #4d0c12;
+  --cor-destaque-suave: #f0e4e5;
+
+  /* Neutros permitidos (textos, bordas, fundos secundários, desabilitados) */
+  --cor-texto: #2b2622;
+  --cor-texto-suave: #6b6259;
+  --cor-branco: #ffffff;
+  --cor-borda: #ddd6cb;
+  --cor-fundo-secundario: #ece7dd;
+  --cor-desabilitado: #b8b0a4;
+
+  /* Feedback */
+  --cor-erro: #8c2f2f;
+  --cor-erro-fundo: #f7e9e9;
+  --cor-sucesso: #3d5a3d;
+
+  /* Tipografia (font stacks locais — sem CDN, research D7) */
+  --fonte-titulos: Georgia, 'Times New Roman', 'Palatino Linotype', serif;
+  --fonte-texto: 'Segoe UI', Tahoma, Verdana, system-ui, sans-serif;
+  --texto-base: 1rem;
+  --texto-pequeno: 0.875rem;
+  --texto-grande: 1.25rem;
+  --titulo-1: 1.75rem;
+  --titulo-2: 1.375rem;
+
+  /* Espaçamentos */
+  --espaco-1: 0.25rem;
+  --espaco-2: 0.5rem;
+  --espaco-3: 0.75rem;
+  --espaco-4: 1rem;
+  --espaco-5: 1.5rem;
+  --espaco-6: 2rem;
+  --espaco-7: 3rem;
+
+  /* Formas e sombras suaves (delicadeza artesanal) */
+  --raio-borda: 0.5rem;
+  --raio-borda-pequeno: 0.25rem;
+  --sombra-suave: 0 2px 8px rgba(43, 38, 34, 0.08);
+
+  /* Acessibilidade */
+  --area-toque-minima: 44px;
+  --anel-foco: 3px solid var(--cor-destaque);
+}

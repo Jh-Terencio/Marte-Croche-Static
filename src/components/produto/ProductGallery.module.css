@@ -1,0 +1,36 @@
+.galeria {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-3);
+}
+
+.principal {
+  --proporcao-imagem: 1 / 1;
+}
+
+.miniaturas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--espaco-2);
+  flex-wrap: wrap;
+}
+
+.miniatura {
+  width: 72px;
+  padding: 0;
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  background: none;
+  overflow: hidden;
+}
+
+.miniatura[aria-current='true'] {
+  border-color: var(--cor-destaque);
+}
+
+.miniaturaImagem {
+  --proporcao-imagem: 1 / 1;
+  border-radius: 0;
+}
