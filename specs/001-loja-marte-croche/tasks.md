@@ -144,9 +144,9 @@ Projeto único frontend na raiz do repositório (ver plan.md → Project Structu
 
 ### Implementation for User Story 5
 
-- [ ] T048 [US5] Implementar src/lib/busca.ts (`filtrarProdutos` com normalização NFD sem diacríticos, casando nome/categoria/descrição/termosDeBusca) + testes src/lib/busca.test.ts
-- [ ] T049 [US5] Criar src/components/layout/Search.tsx: botão de busca no Header expandindo campo (acessível, Esc fecha), submit navega para `/?busca=<termo>`; integrar no Header desktop e no menu mobile (depende de T048)
-- [ ] T050 [US5] Aplicar filtro `?busca=` na HomePage via filtrarProdutos (combinável com categoria), mensagem amigável sem resultados; ampliar src/pages/HomePage.test.tsx (resultado com/sem acento, vazio)
+- [X] T048 [US5] Implementar src/lib/busca.ts (`filtrarProdutos` com normalização NFD sem diacríticos, casando nome/categoria/descrição/termosDeBusca) + testes src/lib/busca.test.ts
+- [X] T049 [US5] Criar src/components/layout/Search.tsx: botão de busca no Header expandindo campo (acessível, Esc fecha), submit navega para `/?busca=<termo>`; integrar no Header desktop e no menu mobile (depende de T048)
+- [X] T050 [US5] Aplicar filtro `?busca=` na HomePage via filtrarProdutos (combinável com categoria), mensagem amigável sem resultados; ampliar src/pages/HomePage.test.tsx (resultado com/sem acento, vazio)
 
 **Checkpoint**: busca funcional de ponta a ponta.
 
@@ -160,9 +160,9 @@ Projeto único frontend na raiz do repositório (ver plan.md → Project Structu
 
 ### Implementation for User Story 6
 
-- [ ] T051 [US6] Passada de responsividade em todas as páginas/componentes (.module.css): breakpoints 480/768/1024, sem rolagem horizontal em 320 px, imagens contidas (`max-width:100%`), alvos de toque ≥ 44 px, carrinho/formulário confortáveis no celular, sem layout shift na troca de imagens
-- [ ] T052 [US6] Passada de acessibilidade: hierarquia de títulos por página, alts revisados, labels/aria nos controles (carrossel, ColorSelector, ModalConfirmacao, menu mobile), foco visível consistente (tokens.css), estados selecionados perceptíveis sem cor apenas, skip para conteúdo se necessário
-- [ ] T053 [US6] Executar quickstart passos 8–9 (mobile DevTools 320 px + jornada completa por teclado) e corrigir toda falha encontrada
+- [X] T051 [US6] Passada de responsividade em todas as páginas/componentes (.module.css): breakpoints 480/768/1024, sem rolagem horizontal em 320 px, imagens contidas (`max-width:100%`), alvos de toque ≥ 44 px, carrinho/formulário confortáveis no celular, sem layout shift na troca de imagens
+- [X] T052 [US6] Passada de acessibilidade: hierarquia de títulos por página, alts revisados, labels/aria nos controles (carrossel, ColorSelector, ModalConfirmacao, menu mobile), foco visível consistente (tokens.css), estados selecionados perceptíveis sem cor apenas, skip para conteúdo se necessário
+- [X] T053 [US6] Executar quickstart passos 8–9 (mobile DevTools 320 px + jornada completa por teclado) e corrigir toda falha encontrada
 
 **Checkpoint**: todas as user stories funcionais em qualquer viewport e por teclado.
 
@@ -170,9 +170,9 @@ Projeto único frontend na raiz do repositório (ver plan.md → Project Structu
 
 ## Phase 9: Polish & Cross-Cutting Concerns
 
-- [ ] T054 [P] Criar README.md: como rodar (quickstart), como adicionar produto/cor/categoria/slide do carrossel editando apenas src/data/ (Constituição §3.V), onde configurar número do WhatsApp
-- [ ] T055 Auditoria final: `npm run test:run` 100% verde, `npm run build` sem erros, aba Network sem requisições a domínios externos (exceto navegação wa.me por clique), roteiro quickstart passos 1–7 completo sem falhas
-- [ ] T056 Checagem de conformidade: critérios 1–10 da Constituição §15 e SC-001..SC-010 da spec verificados um a um; registrar resultado em specs/001-loja-marte-croche/checklists/conformidade.md
+- [X] T054 [P] Criar README.md: como rodar (quickstart), como adicionar produto/cor/categoria/slide do carrossel editando apenas src/data/ (Constituição §3.V), onde configurar número do WhatsApp
+- [X] T055 Auditoria final: `npm run test:run` 100% verde, `npm run build` sem erros, aba Network sem requisições a domínios externos (exceto navegação wa.me por clique), roteiro quickstart passos 1–7 completo sem falhas
+- [X] T056 Checagem de conformidade: critérios 1–10 da Constituição §15 e SC-001..SC-010 da spec verificados um a um; registrar resultado em specs/001-loja-marte-croche/checklists/conformidade.md
 
 ---
 

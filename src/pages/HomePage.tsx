@@ -1,23 +1,34 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import { categorias } from '../data/categorias';
 import { produtos } from '../data/produtos';
+import { filtrarProdutos } from '../lib/busca';
 import { HeroCarousel } from '../components/home/HeroCarousel';
 import { ProductGrid } from '../components/home/ProductGrid';
+import { WhatsAppFloatButton } from '../components/home/WhatsAppFloatButton';
 import { EstadoVazio } from '../components/comuns/EstadoVazio';
 import styles from './HomePage.module.css';
 
 /**
  * Página inicial (FR-003): carrossel de destaque + catálogo em cards,
- * com filtro por categoria via ?categoria= (FR-006).
+ * com filtros por categoria (?categoria=, FR-006) e por busca
+ * (?busca=, FR-025) — combináveis.
  */
 export function HomePage() {
   const [parametros] = useSearchParams();
   const categoriaId = parametros.get('categoria');
+  const termoDeBusca = parametros.get('busca') ?? '';
   const categoriaAtiva = categorias.find((c) => c.id === categoriaId);
 
-  const produtosVisiveis = categoriaId
+  const daCategoria = categoriaId
     ? produtos.filter((produto) => produto.categoriaId === categoriaId)
     : produtos;
+  const produtosVisiveis = filtrarProdutos(termoDeBusca, daCategoria, categorias);
+
+  const titulo = termoDeBusca
+    ? `Resultados para "${termoDeBusca}"`
+    : (categoriaAtiva?.nome ?? 'Nossas peças');
+
+  const filtroAtivo = Boolean(termoDeBusca || categoriaAtiva);
 
   return (
     <>
@@ -29,13 +40,11 @@ export function HomePage() {
 
       <section className={styles.secaoProdutos} aria-labelledby="titulo-produtos">
         <div className={styles.cabecalhoSecao}>
-          <h2 id="titulo-produtos">
-            {categoriaAtiva ? categoriaAtiva.nome : 'Nossas peças'}
-          </h2>
+          <h2 id="titulo-produtos">{titulo}</h2>
           <p className={styles.subtitulo}>
             Cada peça é única, feita à mão com fio premium e muito carinho.
           </p>
-          {categoriaAtiva && (
+          {filtroAtivo && (
             <Link to="/" className={styles.verTodas}>
               Ver todas as peças
             </Link>
@@ -44,8 +53,16 @@ export function HomePage() {
 
         {produtosVisiveis.length === 0 ? (
           <EstadoVazio
-            titulo="Nenhuma peça por aqui ainda"
-            descricao="Não encontramos produtos nesta categoria no momento. Que tal conhecer as outras peças da coleção?"
+            titulo={
+              termoDeBusca
+                ? 'Não encontramos nada com esse termo'
+                : 'Nenhuma peça por aqui ainda'
+            }
+            descricao={
+              termoDeBusca
+                ? 'Tente buscar por outro nome, categoria ou palavra da descrição. Que tal dar uma olhada em todas as peças?'
+                : 'Não encontramos produtos nesta categoria no momento. Que tal conhecer as outras peças da coleção?'
+            }
           >
             <Link to="/">Ver todas as peças</Link>
           </EstadoVazio>
@@ -53,6 +70,8 @@ export function HomePage() {
           <ProductGrid produtos={produtosVisiveis} />
         )}
       </section>
+
+      <WhatsAppFloatButton />
     </>
   );
 }

@@ -1,0 +1,58 @@
+.botaoBusca {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--area-toque-minima);
+  min-height: var(--area-toque-minima);
+  background: none;
+  border: none;
+  color: var(--cor-texto);
+  border-radius: var(--raio-borda-pequeno);
+}
+
+.botaoBusca:hover {
+  color: var(--cor-destaque);
+}
+
+/* ancorado ao header (sticky) — ocupa a largura toda abaixo dele */
+.formulario {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: var(--espaco-2);
+  padding: var(--espaco-3) var(--espaco-4);
+  background-color: var(--cor-fundo);
+  border-top: 1px dashed var(--cor-borda);
+  border-bottom: 1px dashed var(--cor-borda);
+  z-index: 45;
+}
+
+.campo {
+  flex: 1;
+  min-height: var(--area-toque-minima);
+  padding: var(--espaco-2) var(--espaco-3);
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio-borda);
+  background-color: var(--cor-branco);
+}
+
+.campo:focus {
+  border-color: var(--cor-destaque);
+  outline: none;
+}
+
+.enviar {
+  min-height: var(--area-toque-minima);
+  padding: 0 var(--espaco-4);
+  border: none;
+  border-radius: var(--raio-borda);
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+  font-weight: 600;
+}
+
+.enviar:hover {
+  background-color: var(--cor-destaque-escura);
+}

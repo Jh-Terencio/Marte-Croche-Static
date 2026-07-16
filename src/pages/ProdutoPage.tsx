@@ -101,6 +101,7 @@ export function ProdutoPage() {
       <EstadoVazio
         titulo="Produto não encontrado"
         descricao="Esta peça não está mais no catálogo. Que tal conhecer as outras?"
+        nivelTitulo={1}
       >
         <Link to="/">Ver todas as peças</Link>
       </EstadoVazio>

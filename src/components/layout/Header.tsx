@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Navigation } from './Navigation';
 import { CartButton } from './CartButton';
+import { Search } from './Search';
 import styles from './Header.module.css';
 
 /**
@@ -25,6 +26,7 @@ export function Header() {
           Marte <em>Crochê</em>
         </Link>
         <div className={styles.acoes}>
+          <Search />
           <CartButton />
           <button
             type="button"

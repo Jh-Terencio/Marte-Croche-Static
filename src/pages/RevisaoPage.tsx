@@ -29,6 +29,7 @@ export function RevisaoPage() {
       <EstadoVazio
         titulo="Seu carrinho está vazio"
         descricao="Escolha uma peça para montar seu pedido."
+        nivelTitulo={1}
       >
         <Botao onClick={() => navegar('/')}>Ver o catálogo</Botao>
       </EstadoVazio>
@@ -40,6 +41,7 @@ export function RevisaoPage() {
       <EstadoVazio
         titulo="Falta completar seus dados"
         descricao="Precisamos do seu nome, telefone e endereço para montar a mensagem do pedido."
+        nivelTitulo={1}
       >
         <Botao onClick={() => navegar('/finalizacao')}>Preencher meus dados</Botao>
       </EstadoVazio>

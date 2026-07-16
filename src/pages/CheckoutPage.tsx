@@ -15,6 +15,7 @@ export function CheckoutPage() {
       <EstadoVazio
         titulo="Seu carrinho está vazio"
         descricao="Escolha um produto para continuar. Depois é só preencher seus dados e enviar o pedido pelo WhatsApp."
+        nivelTitulo={1}
       >
         <Botao onClick={() => navegar('/')}>Ver o catálogo</Botao>
       </EstadoVazio>

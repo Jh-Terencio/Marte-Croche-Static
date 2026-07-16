@@ -31,7 +31,7 @@ export function CartItem({ item, onAlterarQuantidade, onRemover }: CartItemProps
 
       <div className={styles.corpo}>
         <div className={styles.cabecalho}>
-          <h3 className={styles.nome}>{item.nomeProduto}</h3>
+          <h2 className={styles.nome}>{item.nomeProduto}</h2>
           <span className={styles.categoria}>{item.categoriaNome}</span>
         </div>
 

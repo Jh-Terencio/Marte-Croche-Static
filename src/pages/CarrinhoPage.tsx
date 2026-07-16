@@ -22,6 +22,7 @@ export function CarrinhoPage() {
       <EstadoVazio
         titulo="Seu carrinho está vazio"
         descricao="Escolha uma peça feita à mão para começar a sua encomenda."
+        nivelTitulo={1}
       >
         <Botao onClick={() => navegar('/')}>Continuar comprando</Botao>
       </EstadoVazio>

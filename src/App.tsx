@@ -29,6 +29,7 @@ function App() {
                 <EstadoVazio
                   titulo="Página não encontrada"
                   descricao="O endereço que você acessou não existe."
+                  nivelTitulo={1}
                 >
                   <Link to="/">Voltar ao início</Link>
                 </EstadoVazio>

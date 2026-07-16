@@ -23,7 +23,7 @@ export interface ConfiguracaoLoja {
 
 export const config: ConfiguracaoLoja = {
   // TODO: substituir pelo número comercial real da Marte Crochê antes de publicar.
-  numeroWhatsApp: '5500000000000',
+  numeroWhatsApp: '5521975872401',
   precoAlcaComBolsaCentavos: 1500,
   precoAlcaAvulsaCentavos: 2000,
   quantidadeMaximaPorItem: 20,

@@ -1,0 +1,21 @@
+.flutuante {
+  position: fixed;
+  bottom: var(--espaco-4);
+  right: var(--espaco-4);
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background-color: var(--cor-destaque);
+  color: var(--cor-branco);
+  box-shadow: 0 4px 12px rgba(43, 38, 34, 0.25);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.flutuante:hover {
+  background-color: var(--cor-destaque-escura);
+  transform: translateY(-2px);
+}
