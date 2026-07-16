@@ -13,7 +13,7 @@ export const produtos: Produto[] = [
     nome: 'Bolsa Marte',
     categoriaId: 'bolsas',
     descricao:
-      'Bolsa de crochê feita à mão em fio premium, com fechamento por botão de madeira e forro interno em tecido. Espaçosa e delicada, perfeita para o dia a dia.',
+      'Medidas aproximadas: \nLargura: 26cm \nAltura: 16cm \nAlça: 40cm',
     precoBaseCentavos: 15000,
     imagensPadrao: ['/images/produtos/bolsa-marte/padrao/01-principal.webp'],
     cores: [
@@ -21,20 +21,24 @@ export const produtos: Produto[] = [
         id: 'vinho',
         nome: 'Vinho',
         valorVisual: '#681119',
-        imagens: [],
+        imagens: [
+          '/images/produtos/bolsa-marte/vinho/01-principal.webp',
+        ],
       },
       {
         id: 'bege',
         nome: 'Bege',
         valorVisual: '#e4c5b0',
-        imagens: [],
+        imagens: [
+          '/images/produtos/bolsa-marte/bege/01-principal.webp',
+        ],
       },
-      {
-        id: 'branco',
-        nome: 'Branco',
-        valorVisual: '#f0eff4',
-        imagens: [],
-      },
+      // {
+      //   id: 'branco',
+      //   nome: 'Branco',
+      //   valorVisual: '#f0eff4',
+      //   imagens: [],
+      // },
       {
         id: 'azul-marinho',
         nome: 'Azul Marinho',
@@ -55,57 +59,67 @@ export const produtos: Produto[] = [
         id: 'rosa-bebe',
         nome: 'Rosa Bebê',
         valorVisual: '#fdcee1',
-        imagens: [],
+        imagens: [
+          '/images/produtos/bolsa-marte/rosa-bebe/01-principal.webp',
+        ],
       },
-      {
-        id: 'azul-bebe',
-        nome: 'Azul Bebê',
-        valorVisual: '#ceebf6',
-        imagens: [],
-      },
+      // {
+      //   id: 'azul-bebe',
+      //   nome: 'Azul Bebê',
+      //   valorVisual: '#ceebf6',
+      //   imagens: [],
+      // },
       {
         id: 'lavanda',
         nome: 'Lavânda',
         valorVisual: '#c195d2',
-        imagens: [],
+        imagens: [
+          '/images/produtos/bolsa-marte/lavanda/01-principal.webp',
+        ],
       },
-      {
-        id: 'esmeralda',
-        nome: 'Esmeralda',
-        valorVisual: '#0f5555',
-        imagens: [],
-      },
-      {
-        id: 'chocolate',
-        nome: 'Chocolate',
-        valorVisual: '#3b1d20',
-        imagens: [],
-      },
-      {
-        id: 'preto',
-        nome: 'Preto',
-        valorVisual: '#0c0c17',
-        imagens: [],
-      },
-      {
-        id: 'grafite',
-        nome: 'Grafite',
-        valorVisual: '#413e45',
-        imagens: [],
-      },
+      // {
+      //   id: 'esmeralda',
+      //   nome: 'Esmeralda',
+      //   valorVisual: '#0f5555',
+      //   imagens: [],
+      // },
+      // {
+      //   id: 'chocolate',
+      //   nome: 'Chocolate',
+      //   valorVisual: '#3b1d20',
+      //   imagens: [],
+      // },
+      // {
+      //   id: 'preto',
+      //   nome: 'Preto',
+      //   valorVisual: '#0c0c17',
+      //   imagens: [],
+      // },
+      // {
+      //   id: 'grafite',
+      //   nome: 'Grafite',
+      //   valorVisual: '#413e45',
+      //   imagens: [],
+      // },
     ],
     permiteCorRepetida: false,
     adicionais: [
       {
+        id: 'fecho-ima',
+        nome: 'Fecho de Imã',
+        precoCentavos: 2000,
+        opcoes: [],
+      },
+      {
         id: 'alca-corrente',
-        nome: 'Alça de corrente',
-        precoCentavos: 1500,
+        nome: 'Alça de Corrente',
+        precoCentavos: 4500,
         opcoes: [],
       },
       {
         id: 'alca-longa-croche',
-        nome: 'Alça longa de crochê',
-        precoCentavos: 1500,
+        nome: 'Alça Longa de Crochê',
+        precoCentavos: 4500,
         opcoes: [
           {
             id: 'cor-alca',
@@ -117,6 +131,8 @@ export const produtos: Produto[] = [
               { id: 'bege', nome: 'Bege', valorVisual: '#d9c7a7' },
               { id: 'azul-marinho', nome: 'Azul Marinho', valorVisual: '#383757' },
               { id: 'amarelo-manteiga', nome: 'Amarelo Manteiga', valorVisual: '#efc96e' },
+              { id: 'rosa-bebe', nome: 'Rosa Bebê', valorVisual: '#fdcee1' },
+              { id: 'lavanda', nome: 'Lavânda', valorVisual: '#c195d2' },
             ],
           },
         ],
