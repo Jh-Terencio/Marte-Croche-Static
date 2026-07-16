@@ -10,51 +10,59 @@ import { config } from './config';
  */
 export const produtos: Produto[] = [
   {
-    id: 'bolsa-lua',
-    nome: 'Bolsa Lua',
+    id: 'bolsa-marte',
+    nome: 'Bolsa Marte',
     categoriaId: 'bolsas',
     descricao:
       'Bolsa de crochê feita à mão em fio premium, com fechamento por botão de madeira e forro interno em tecido. Espaçosa e delicada, perfeita para o dia a dia.',
-    precoBaseCentavos: 12000,
-    imagensPadrao: ['/images/produtos/bolsa-lua/padrao/01-principal.webp'],
+    precoBaseCentavos: 15000,
+    imagensPadrao: ['/images/produtos/bolsa-marte/padrao/01-principal.webp'],
     cores: [
+      // {
+      //   id: 'vinho',
+      //   nome: 'Vinho',
+      //   valorVisual: '#681119',
+      //   imagens: [
+      //     '/images/produtos/bolsa-lua/vinho/01-principal.webp',
+      //     '/images/produtos/bolsa-lua/vinho/02-lateral.webp',
+      //     '/images/produtos/bolsa-lua/vinho/03-detalhes.webp',
+      //   ],
+      // },
+      // {
+      //   id: 'bege',
+      //   nome: 'Bege',
+      //   valorVisual: '#e4c5b0',
+      //   imagens: [
+      //     '/images/produtos/bolsa-lua/bege/01-principal.webp',
+      //     '/images/produtos/bolsa-lua/bege/02-lateral.webp',
+      //   ],
+      // },
       {
-        id: 'vinho',
-        nome: 'Vinho',
-        valorVisual: '#681119',
+        id: 'azul-marinho',
+        nome: 'Azul Marinho',
+        valorVisual: '#383757',
         imagens: [
-          '/images/produtos/bolsa-lua/vinho/01-principal.webp',
-          '/images/produtos/bolsa-lua/vinho/02-lateral.webp',
-          '/images/produtos/bolsa-lua/vinho/03-detalhes.webp',
+          '/images/produtos/bolsa-marte/azul-marinho/01-principal.webp',
         ],
       },
       {
-        id: 'bege',
-        nome: 'Bege',
-        valorVisual: '#d9c7a7',
+        id: 'amarelo-manteiga',
+        nome: 'Amarelo Manteiga',
+        valorVisual: '#efc96e',
         imagens: [
-          '/images/produtos/bolsa-lua/bege/01-principal.webp',
-          '/images/produtos/bolsa-lua/bege/02-lateral.webp',
-        ],
-      },
-      {
-        id: 'preto',
-        nome: 'Preto',
-        valorVisual: '#2b2622',
-        imagens: [
-          '/images/produtos/bolsa-lua/preto/01-principal.webp',
-          '/images/produtos/bolsa-lua/preto/02-lateral.webp',
+          '/images/produtos/bolsa-marte/amarelo-manteiga/01-principal.webp',
         ],
       },
     ],
     coresAlca: [
       { id: 'vinho', nome: 'Vinho', valorVisual: '#681119', imagens: [] },
       { id: 'bege', nome: 'Bege', valorVisual: '#d9c7a7', imagens: [] },
-      { id: 'preto', nome: 'Preto', valorVisual: '#2b2622', imagens: [] },
+      { id: 'azul-marinho', nome: 'Azul Marinho', valorVisual: '#383757', imagens: [] },
+      { id: 'amarelo-manteiga', nome: 'Amarelo Manteiga', valorVisual: '#efc96e', imagens: [] },
     ],
     permiteAlca: true,
     permiteCorRepetida: false,
-    prazoConfeccao: '7 a 10 dias úteis',
+    prazoConfeccao: '10 dias úteis',
     disponivel: true,
     informacoesAdicionais: 'Pode ser feita em duas cores combinadas. Lavar à mão com sabão neutro.',
     termosDeBusca: ['bolsa', 'croche', 'artesanal', 'lua', 'duas cores'],
