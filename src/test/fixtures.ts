@@ -2,8 +2,6 @@ import type { Produto } from '../types/produto';
 import type { ItemCarrinho } from '../types/carrinho';
 import type { ConfiguracaoLoja } from '../data/config';
 
-/** Fábricas de dados para testes — valores padrão simples, sobrescreva o que importar. */
-
 export function criarConfigTeste(sobrescrever: Partial<ConfiguracaoLoja> = {}): ConfiguracaoLoja {
   return {
     numeroWhatsApp: '5511999999999',
@@ -40,12 +38,32 @@ export function criarProdutoTeste(sobrescrever: Partial<Produto> = {}): Produto 
         imagens: ['/images/produtos/bolsa-teste/bege/01-principal.webp'],
       },
     ],
-    coresAlca: [
-      { id: 'vinho', nome: 'Vinho', valorVisual: '#681119', imagens: [] },
-      { id: 'preto', nome: 'Preto', valorVisual: '#2b2622', imagens: [] },
-    ],
-    permiteAlca: true,
     permiteCorRepetida: false,
+    adicionais: [
+      {
+        id: 'alca-corrente',
+        nome: 'Alça de corrente',
+        precoCentavos: 1500,
+        opcoes: [],
+      },
+      {
+        id: 'alca-longa-croche',
+        nome: 'Alça longa de crochê',
+        precoCentavos: 1500,
+        opcoes: [
+          {
+            id: 'cor-alca',
+            tipo: 'cor',
+            legenda: 'Cor da alça',
+            obrigatoria: true,
+            valores: [
+              { id: 'vinho', nome: 'Vinho', valorVisual: '#681119' },
+              { id: 'preto', nome: 'Preto', valorVisual: '#2b2622' },
+            ],
+          },
+        ],
+      },
+    ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
     ...sobrescrever,
@@ -63,8 +81,7 @@ export function criarItemTeste(sobrescrever: Partial<ItemCarrinho> = {}): ItemCa
     quantidade: 1,
     corPrincipal: { id: 'vinho', nome: 'Vinho' },
     corSecundaria: null,
-    comAlca: false,
-    corAlca: null,
+    adicionais: [],
     observacoes: '',
     ...sobrescrever,
   };

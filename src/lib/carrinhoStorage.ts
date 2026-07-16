@@ -1,12 +1,5 @@
 import type { ItemCarrinho, CorEscolhida } from '../types/carrinho';
 
-/**
- * Persistência do carrinho em localStorage (contracts/armazenamento-carrinho.md).
- * Única chave de storage da aplicação — dados pessoais NUNCA entram aqui
- * (Constituição §6). Leitura defensiva: conteúdo inválido é descartado em
- * silêncio; falhas de storage nunca quebram a aplicação.
- */
-
 export const CHAVE_CARRINHO = 'marte-croche:carrinho';
 const VERSAO_ATUAL = 1;
 
@@ -32,11 +25,10 @@ function ehItemValido(valor: unknown): valor is ItemCarrinho {
     typeof item.quantidade === 'number' &&
     Number.isInteger(item.quantidade) &&
     item.quantidade >= 1 &&
-    typeof item.comAlca === 'boolean' &&
+    Array.isArray(item.adicionais) &&
     typeof item.observacoes === 'string' &&
     ehCorEscolhidaOuNull(item.corPrincipal) &&
-    ehCorEscolhidaOuNull(item.corSecundaria) &&
-    ehCorEscolhidaOuNull(item.corAlca)
+    ehCorEscolhidaOuNull(item.corSecundaria)
   );
 }
 
@@ -44,11 +36,10 @@ function removerComSeguranca(storage: Storage): void {
   try {
     storage.removeItem(CHAVE_CARRINHO);
   } catch {
-    // storage indisponível — nada a fazer
+    // storage indisponível
   }
 }
 
-/** Carrega o carrinho; qualquer conteúdo inválido é descartado e retorna []. */
 export function carregarCarrinho(storage: Storage): ItemCarrinho[] {
   try {
     const bruto = storage.getItem(CHAVE_CARRINHO);
@@ -73,16 +64,14 @@ export function carregarCarrinho(storage: Storage): ItemCarrinho[] {
   }
 }
 
-/** Salva o carrinho; falha de escrita é silenciosa (aplicação segue em memória). */
 export function salvarCarrinho(storage: Storage, itens: ItemCarrinho[]): void {
   try {
     storage.setItem(CHAVE_CARRINHO, JSON.stringify({ versao: VERSAO_ATUAL, itens }));
   } catch {
-    // cota excedida ou storage indisponível — segue em memória
+    // cota excedida ou storage indisponível
   }
 }
 
-/** Esvazia o carrinho removendo a chave por completo. */
 export function limparCarrinho(storage: Storage): void {
   removerComSeguranca(storage);
 }

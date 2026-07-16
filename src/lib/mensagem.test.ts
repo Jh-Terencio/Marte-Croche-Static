@@ -22,13 +22,11 @@ function dadosCompletos(sobrescrever: Partial<DadosCliente> = {}): DadosCliente 
   };
 }
 
-// itens baseados em produtos reais do catálogo (a linha "Alça:" depende
-// de o produto permitir alça)
-function itemBolsaLua(sobrescrever: Partial<ItemCarrinho> = {}): ItemCarrinho {
+function itemBolsa(sobrescrever: Partial<ItemCarrinho> = {}): ItemCarrinho {
   return criarItemTeste({
     id: 'a',
-    produtoId: 'bolsa-lua',
-    nomeProduto: 'Bolsa Lua',
+    produtoId: 'bolsa-marte',
+    nomeProduto: 'Bolsa Marte',
     categoriaNome: 'Bolsas',
     precoUnitarioCentavos: 12000,
     corPrincipal: { id: 'vinho', nome: 'Vinho' },
@@ -36,31 +34,33 @@ function itemBolsaLua(sobrescrever: Partial<ItemCarrinho> = {}): ItemCarrinho {
   });
 }
 
-function itemAlcaAvulsa(sobrescrever: Partial<ItemCarrinho> = {}): ItemCarrinho {
-  return criarItemTeste({
-    id: 'b',
-    produtoId: 'alca-classica',
-    nomeProduto: 'Alça de Crochê Clássica',
-    categoriaNome: 'Alças',
-    precoUnitarioCentavos: 2000,
-    corPrincipal: { id: 'vinho', nome: 'Vinho' },
-    comAlca: false,
-    corAlca: null,
-    ...sobrescrever,
-  });
-}
-
 describe('montarMensagem', () => {
-  it('1. mensagem completa — igualdade exata da string', () => {
+  it('mensagem completa com adicionais — igualdade exata', () => {
     const itens = [
-      itemBolsaLua({
+      itemBolsa({
         precoUnitarioCentavos: 13500,
         corSecundaria: { id: 'bege', nome: 'Bege' },
-        comAlca: true,
-        corAlca: { id: 'preto', nome: 'Preto' },
+        adicionais: [
+          {
+            adicionalId: 'alca-longa-croche',
+            nomeAdicional: 'Alça longa de crochê',
+            precoCentavos: 1500,
+            opcoes: [
+              { opcaoId: 'cor-alca', nomeOpcao: 'Cor da alça', valorId: 'preto', valorNome: 'Preto' },
+            ],
+          },
+        ],
         observacoes: 'Presente, embrulhar com carinho',
       }),
-      itemAlcaAvulsa({ quantidade: 2 }),
+      criarItemTeste({
+        id: 'b',
+        produtoId: 'bolsa-venus',
+        nomeProduto: 'Bolsa Vênus',
+        categoriaNome: 'Bolsas',
+        precoUnitarioCentavos: 9800,
+        corPrincipal: { id: 'vinho', nome: 'Vinho' },
+        quantidade: 2,
+      }),
     ];
 
     const esperada = `*PEDIDO — Marte Crochê*
@@ -69,25 +69,25 @@ Olá! Gostaria de fazer uma encomenda.
 
 *ITENS DO PEDIDO*
 
-1. *Bolsa Lua*
+1. *Bolsa Marte*
 Categoria: Bolsas
 Cor principal: Vinho
 Segunda cor: Bege
-Alça: Com alça
+Adicional: Alça longa de crochê
 Cor da alça: Preto
 Quantidade: 1
 Valor unitário: R$ 135,00
 Subtotal: R$ 135,00
 Observações: Presente, embrulhar com carinho
 
-2. *Alça de Crochê Clássica*
-Categoria: Alças
+2. *Bolsa Vênus*
+Categoria: Bolsas
 Cor: Vinho
 Quantidade: 2
-Valor unitário: R$ 20,00
-Subtotal: R$ 40,00
+Valor unitário: R$ 98,00
+Subtotal: R$ 196,00
 
-*TOTAL DO PEDIDO: R$ 175,00*
+*TOTAL DO PEDIDO: R$ 331,00*
 
 *DADOS DO CLIENTE*
 
@@ -108,8 +108,8 @@ Observações gerais: Entregar após as 18h`;
     expect(montarMensagem(itens, dadosCompletos(), config)).toBe(esperada);
   });
 
-  it('2. mensagem mínima — opcionais vazios omitidos por completo', () => {
-    const itens = [itemBolsaLua()];
+  it('mensagem mínima — opcionais vazios omitidos por completo', () => {
+    const itens = [itemBolsa()];
     const dados = dadosCompletos({
       complemento: '',
       referencia: '',
@@ -122,10 +122,9 @@ Olá! Gostaria de fazer uma encomenda.
 
 *ITENS DO PEDIDO*
 
-1. *Bolsa Lua*
+1. *Bolsa Marte*
 Categoria: Bolsas
 Cor: Vinho
-Alça: Sem alça
 Quantidade: 1
 Valor unitário: R$ 120,00
 Subtotal: R$ 120,00
@@ -149,56 +148,50 @@ CEP: 01234-567`;
     expect(montarMensagem(itens, dados, config)).not.toContain('\n\n\n');
   });
 
-  it('3. múltiplos itens numerados na ordem do carrinho', () => {
+  it('múltiplos itens numerados na ordem do carrinho', () => {
     const itens = [
-      itemBolsaLua({ id: '1º' }),
-      itemAlcaAvulsa({ id: '2º' }),
-      itemBolsaLua({ id: '3º', nomeProduto: 'Bolsa Sol', produtoId: 'bolsa-sol' }),
+      itemBolsa({ id: '1' }),
+      itemBolsa({ id: '2', nomeProduto: 'Bolsa Vênus', produtoId: 'bolsa-venus' }),
     ];
     const mensagem = montarMensagem(itens, dadosCompletos(), config);
-    expect(mensagem.indexOf('1. *Bolsa Lua*')).toBeGreaterThan(-1);
-    expect(mensagem.indexOf('2. *Alça de Crochê Clássica*')).toBeGreaterThan(
-      mensagem.indexOf('1. *Bolsa Lua*'),
-    );
-    expect(mensagem.indexOf('3. *Bolsa Sol*')).toBeGreaterThan(
-      mensagem.indexOf('2. *Alça de Crochê Clássica*'),
+    expect(mensagem.indexOf('1. *Bolsa Marte*')).toBeGreaterThan(-1);
+    expect(mensagem.indexOf('2. *Bolsa Vênus*')).toBeGreaterThan(
+      mensagem.indexOf('1. *Bolsa Marte*'),
     );
   });
 
-  it('4. valores formatados em reais, inclusive milhares', () => {
-    const itens = [itemBolsaLua({ precoUnitarioCentavos: 123456 })];
+  it('valores formatados em reais, inclusive milhares', () => {
+    const itens = [itemBolsa({ precoUnitarioCentavos: 123456 })];
     const mensagem = montarMensagem(itens, dadosCompletos(), config);
     expect(mensagem).toContain('Valor unitário: R$ 1.234,56');
     expect(mensagem).toContain('*TOTAL DO PEDIDO: R$ 1.234,56*');
   });
 
-  it('5. produto sem opção de alça não gera linha "Alça:"', () => {
+  it('produto sem adicionais não gera linha "Adicional:"', () => {
     const capinha = criarItemTeste({
-      produtoId: 'capinha-airpods',
+      produtoId: 'capinha-teste',
       nomeProduto: 'Capinha de AirPods',
       categoriaNome: 'Capinhas de AirPods',
       precoUnitarioCentavos: 4500,
-      comAlca: false,
-      corAlca: null,
     });
     const mensagem = montarMensagem([capinha], dadosCompletos(), config);
-    expect(mensagem).not.toContain('Alça:');
+    expect(mensagem).not.toContain('Adicional:');
   });
 
-  it('6. URL do WhatsApp: número do config e mensagem íntegra após decode', () => {
-    const mensagem = montarMensagem([itemBolsaLua()], dadosCompletos(), config);
+  it('URL do WhatsApp: número do config e mensagem íntegra após decode', () => {
+    const mensagem = montarMensagem([itemBolsa()], dadosCompletos(), config);
     const url = montarUrlWhatsApp(mensagem, config);
 
     expect(url.startsWith(`https://wa.me/${config.numeroWhatsApp}?text=`)).toBe(true);
-    expect(url).toContain('%0A'); // quebras de linha preservadas na codificação
+    expect(url).toContain('%0A');
 
     const texto = url.split('?text=')[1];
     expect(decodeURIComponent(texto)).toBe(mensagem);
   });
 
-  it('7. acentos, caracteres especiais e emojis sobrevivem ao ciclo encode/decode', () => {
+  it('acentos, caracteres especiais e emojis sobrevivem ao ciclo encode/decode', () => {
     const itens = [
-      itemBolsaLua({ observacoes: 'Coração ♥ açaí & crochê — 100% amor 🧶' }),
+      itemBolsa({ observacoes: 'Coração ♥ açaí & crochê — 100% amor 🧶' }),
     ];
     const dados = dadosCompletos({ cidade: 'São João del-Rei' });
     const mensagem = montarMensagem(itens, dados, config);

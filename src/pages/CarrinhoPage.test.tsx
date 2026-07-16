@@ -25,14 +25,13 @@ function renderizarCarrinho() {
   );
 }
 
-// item baseado em produto real do catálogo (bolsa-lua) para o fluxo de edição
-function itemDeBolsaLua(sobrescrever: Partial<ItemCarrinho> = {}): ItemCarrinho {
+function itemDeBolsaMarte(sobrescrever: Partial<ItemCarrinho> = {}): ItemCarrinho {
   return criarItemTeste({
-    id: 'item-lua',
-    produtoId: 'bolsa-lua',
-    nomeProduto: 'Bolsa Lua',
+    id: 'item-marte',
+    produtoId: 'bolsa-marte',
+    nomeProduto: 'Bolsa Marte',
     categoriaNome: 'Bolsas',
-    precoUnitarioCentavos: 12000,
+    precoUnitarioCentavos: 15000,
     ...sobrescrever,
   });
 }
@@ -43,43 +42,43 @@ beforeEach(() => {
 
 describe('CarrinhoPage', () => {
   it('restaura os itens persistidos na montagem (FR-024)', () => {
-    semearCarrinho([itemDeBolsaLua({ quantidade: 2 })]);
+    semearCarrinho([itemDeBolsaMarte({ quantidade: 2 })]);
     renderizarCarrinho();
-    expect(screen.getByRole('heading', { name: 'Bolsa Lua' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Bolsa Marte' })).toBeInTheDocument();
     expect(screen.getByLabelText('Quantidade')).toHaveValue(2);
-    expect(screen.getAllByText('R$ 240,00').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('R$ 300,00').length).toBeGreaterThan(0);
   });
 
   it('alterar a quantidade atualiza subtotal e total imediatamente', async () => {
     const usuario = userEvent.setup();
-    semearCarrinho([itemDeBolsaLua()]);
+    semearCarrinho([itemDeBolsaMarte()]);
     renderizarCarrinho();
 
     await usuario.click(screen.getByRole('button', { name: 'Aumentar quantidade' }));
 
     const resumo = screen.getByRole('region', { name: 'Resumo do pedido' });
-    expect(within(resumo).getAllByText('R$ 240,00').length).toBeGreaterThan(0);
+    expect(within(resumo).getAllByText('R$ 300,00').length).toBeGreaterThan(0);
     expect(screen.getByText('2 peças')).toBeInTheDocument();
   });
 
   it('remove um item da lista', async () => {
     const usuario = userEvent.setup();
     semearCarrinho([
-      itemDeBolsaLua(),
-      criarItemTeste({ id: 'item-b', nomeProduto: 'Bolsa Teste B', produtoId: 'bolsa-sol' }),
+      itemDeBolsaMarte(),
+      criarItemTeste({ id: 'item-b', nomeProduto: 'Bolsa Vênus', produtoId: 'bolsa-venus' }),
     ]);
     renderizarCarrinho();
 
-    const itemA = screen.getByRole('article', { name: 'Bolsa Lua' });
+    const itemA = screen.getByRole('article', { name: 'Bolsa Marte' });
     await usuario.click(within(itemA).getByRole('button', { name: 'Remover' }));
 
-    expect(screen.queryByRole('heading', { name: 'Bolsa Lua' })).not.toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Bolsa Teste B' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Bolsa Marte' })).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Bolsa Vênus' })).toBeInTheDocument();
   });
 
   it('esvaziar exige confirmação: cancelar mantém, confirmar limpa', async () => {
     const usuario = userEvent.setup();
-    semearCarrinho([itemDeBolsaLua()]);
+    semearCarrinho([itemDeBolsaMarte()]);
     renderizarCarrinho();
 
     await usuario.click(screen.getByRole('button', { name: 'Esvaziar carrinho' }));
@@ -87,7 +86,7 @@ describe('CarrinhoPage', () => {
     expect(within(modal).getByText('Esvaziar o carrinho?')).toBeInTheDocument();
 
     await usuario.click(within(modal).getByRole('button', { name: 'Manter itens' }));
-    expect(screen.getByRole('heading', { name: 'Bolsa Lua' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Bolsa Marte' })).toBeInTheDocument();
 
     await usuario.click(screen.getByRole('button', { name: 'Esvaziar carrinho' }));
     await usuario.click(
@@ -112,7 +111,7 @@ describe('CarrinhoPage', () => {
 
   it('avança para a finalização com itens no carrinho', async () => {
     const usuario = userEvent.setup();
-    semearCarrinho([itemDeBolsaLua()]);
+    semearCarrinho([itemDeBolsaMarte()]);
     renderizarCarrinho();
 
     await usuario.click(screen.getByRole('button', { name: 'Finalizar pedido' }));
@@ -123,7 +122,7 @@ describe('CarrinhoPage', () => {
 
   it('item de produto existente tem link de edição; produto removido do catálogo tem aviso e só remoção', () => {
     semearCarrinho([
-      itemDeBolsaLua(),
+      itemDeBolsaMarte(),
       criarItemTeste({
         id: 'item-fantasma',
         produtoId: 'produto-removido',
@@ -132,10 +131,10 @@ describe('CarrinhoPage', () => {
     ]);
     renderizarCarrinho();
 
-    const itemExistente = screen.getByRole('article', { name: 'Bolsa Lua' });
+    const itemExistente = screen.getByRole('article', { name: 'Bolsa Marte' });
     expect(within(itemExistente).getByRole('link', { name: 'Editar' })).toHaveAttribute(
       'href',
-      '/produto/bolsa-lua?editar=item-lua',
+      '/produto/bolsa-marte?editar=item-marte',
     );
 
     const itemFantasma = screen.getByRole('article', { name: 'Peça Antiga' });

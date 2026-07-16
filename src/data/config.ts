@@ -29,7 +29,7 @@ export const config: ConfiguracaoLoja = {
   quantidadeMaximaPorItem: 20,
   limiteObservacoes: 500,
   // TODO: substituir pelo perfil real do Instagram antes de publicar.
-  linkInstagram: 'https://www.instagram.com/martecroche',
+  linkInstagram: 'https://www.instagram.com/martecroche_/',
   fraseMarca: 'Feito à mão para quem valoriza o que é único.',
   imagemFallback: '/images/fallback-produto.webp',
 };

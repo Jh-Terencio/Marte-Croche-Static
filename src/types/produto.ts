@@ -24,6 +24,29 @@ export interface CorDeProduto {
   imagens: string[];
 }
 
+export interface ValorDeOpcao {
+  id: string;
+  nome: string;
+  /** Cor CSS da amostra (apenas para opções do tipo "cor"). */
+  valorVisual?: string;
+}
+
+export interface OpcaoDeAdicional {
+  id: string;
+  tipo: 'cor' | 'selecao';
+  legenda: string;
+  obrigatoria: boolean;
+  valores: ValorDeOpcao[];
+}
+
+export interface AdicionalDoProduto {
+  id: string;
+  nome: string;
+  /** Acréscimo em centavos (0 = sem custo extra). */
+  precoCentavos: number;
+  opcoes: OpcaoDeAdicional[];
+}
+
 export interface Produto {
   id: string;
   nome: string;
@@ -35,12 +58,10 @@ export interface Produto {
   imagensPadrao: string[];
   /** Somente cores listadas aqui são ofertadas (RN-08). */
   cores: CorDeProduto[];
-  /** Opções de cor da alça (quando permiteAlca). */
-  coresAlca: CorDeProduto[];
-  /** Habilita a opção com/sem alça (RN-06). */
-  permiteAlca: boolean;
   /** Mesma cor nas duas posições da bolsa (RN-05). */
   permiteCorRepetida: boolean;
+  /** Adicionais disponíveis para este produto (alças, acessórios, etc.). */
+  adicionais: AdicionalDoProduto[];
   /** Texto exibível (ex.: "7 a 10 dias úteis"). */
   prazoConfeccao: string;
   /** false → encomenda bloqueada (FR-011). */

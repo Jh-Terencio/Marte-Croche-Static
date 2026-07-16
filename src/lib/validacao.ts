@@ -3,18 +3,12 @@ import type { PersonalizacaoItem } from '../types/carrinho';
 import type { DadosCliente } from '../types/cliente';
 import type { ConfiguracaoLoja } from '../data/config';
 
-/**
- * Validações (contracts/funcoes-negocio.md) — funções puras com
- * mensagens em pt-BR prontas para exibição junto ao campo.
- */
-
 export interface ResultadoValidacao {
   valido: boolean;
   /** chave = campo, valor = mensagem em pt-BR */
   erros: Record<string, string>;
 }
 
-/** Regras RN-04..06 e RN-11 da personalização do produto. */
 export function validarPersonalizacao(
   personalizacao: PersonalizacaoItem,
   produto: Produto,
@@ -31,8 +25,10 @@ export function validarPersonalizacao(
     }
   }
 
-  if (personalizacao.corSecundariaId) {
-    if (!idsDeCores.includes(personalizacao.corSecundariaId)) {
+  if (personalizacao.quantidadeCores === 2) {
+    if (!personalizacao.corSecundariaId) {
+      erros.corSecundaria = 'Escolha a segunda cor.';
+    } else if (!idsDeCores.includes(personalizacao.corSecundariaId)) {
       erros.corSecundaria = 'Escolha uma das cores disponíveis.';
     } else if (
       !produto.permiteCorRepetida &&
@@ -42,12 +38,21 @@ export function validarPersonalizacao(
     }
   }
 
-  if (produto.permiteAlca && personalizacao.comAlca) {
-    const idsDeCoresDaAlca = produto.coresAlca.map((cor) => cor.id);
-    if (!personalizacao.corAlcaId) {
-      erros.corAlca = 'Escolha a cor da alça.';
-    } else if (!idsDeCoresDaAlca.includes(personalizacao.corAlcaId)) {
-      erros.corAlca = 'Escolha uma das cores disponíveis.';
+  for (const adicional of produto.adicionais) {
+    const selecionado = personalizacao.adicionaisSelecionados[adicional.id];
+    if (!selecionado) continue;
+
+    for (const opcao of adicional.opcoes) {
+      if (opcao.obrigatoria && !selecionado[opcao.id]) {
+        erros[`adicional_${adicional.id}_${opcao.id}`] =
+          `Escolha ${opcao.legenda.toLowerCase()} para ${adicional.nome.toLowerCase()}.`;
+      } else if (selecionado[opcao.id]) {
+        const valorExiste = opcao.valores.some((v) => v.id === selecionado[opcao.id]);
+        if (!valorExiste) {
+          erros[`adicional_${adicional.id}_${opcao.id}`] =
+            'Escolha uma das opções disponíveis.';
+        }
+      }
     }
   }
 
@@ -75,7 +80,6 @@ export const UFS = [
 
 const LIMITE_OBSERVACOES = 500;
 
-/** Regras do formulário de finalização (Constituição §8). */
 export function validarDadosCliente(dados: DadosCliente): ResultadoValidacao {
   const erros: Record<string, string> = {};
 

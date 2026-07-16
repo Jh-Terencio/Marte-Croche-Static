@@ -9,10 +9,10 @@ function personalizacaoValida(
   sobrescrever: Partial<PersonalizacaoItem> = {},
 ): PersonalizacaoItem {
   return {
+    quantidadeCores: 1,
     corPrincipalId: 'vinho',
     corSecundariaId: null,
-    comAlca: false,
-    corAlcaId: null,
+    adicionaisSelecionados: {},
     quantidade: 1,
     observacoes: '',
     ...sobrescrever,
@@ -20,7 +20,7 @@ function personalizacaoValida(
 }
 
 describe('validarPersonalizacao', () => {
-  const bolsa = criarProdutoTeste(); // permiteCorRepetida: false, permiteAlca: true
+  const bolsa = criarProdutoTeste();
 
   it('aceita uma personalização completa e válida', () => {
     const resultado = validarPersonalizacao(personalizacaoValida(), bolsa, config);
@@ -58,9 +58,19 @@ describe('validarPersonalizacao', () => {
     expect(resultado.erros.corPrincipal).toBe('Escolha uma das cores disponíveis.');
   });
 
+  it('exige segunda cor quando quantidadeCores é 2', () => {
+    const resultado = validarPersonalizacao(
+      personalizacaoValida({ quantidadeCores: 2, corSecundariaId: null }),
+      bolsa,
+      config,
+    );
+    expect(resultado.valido).toBe(false);
+    expect(resultado.erros.corSecundaria).toBe('Escolha a segunda cor.');
+  });
+
   it('impede cor repetida quando o produto não permite (RN-05)', () => {
     const resultado = validarPersonalizacao(
-      personalizacaoValida({ corSecundariaId: 'vinho' }),
+      personalizacaoValida({ quantidadeCores: 2, corSecundariaId: 'vinho' }),
       bolsa,
       config,
     );
@@ -73,28 +83,45 @@ describe('validarPersonalizacao', () => {
   it('aceita cor repetida quando o produto permite (RN-05)', () => {
     const bolsaFlex = criarProdutoTeste({ permiteCorRepetida: true });
     const resultado = validarPersonalizacao(
-      personalizacaoValida({ corSecundariaId: 'vinho' }),
+      personalizacaoValida({ quantidadeCores: 2, corSecundariaId: 'vinho' }),
       bolsaFlex,
       config,
     );
     expect(resultado.valido).toBe(true);
   });
 
-  it('exige cor da alça se e somente se "com alça" (RN-06)', () => {
-    const semCorDaAlca = validarPersonalizacao(
-      personalizacaoValida({ comAlca: true, corAlcaId: null }),
+  it('exige opção obrigatória de adicional quando selecionado', () => {
+    const resultado = validarPersonalizacao(
+      personalizacaoValida({
+        adicionaisSelecionados: { 'alca-longa-croche': { 'cor-alca': null } },
+      }),
       bolsa,
       config,
     );
-    expect(semCorDaAlca.valido).toBe(false);
-    expect(semCorDaAlca.erros.corAlca).toBe('Escolha a cor da alça.');
+    expect(resultado.valido).toBe(false);
+    expect(resultado.erros['adicional_alca-longa-croche_cor-alca']).toBeDefined();
+  });
 
-    const comCorDaAlca = validarPersonalizacao(
-      personalizacaoValida({ comAlca: true, corAlcaId: 'preto' }),
+  it('aceita adicional com opção obrigatória preenchida', () => {
+    const resultado = validarPersonalizacao(
+      personalizacaoValida({
+        adicionaisSelecionados: { 'alca-longa-croche': { 'cor-alca': 'vinho' } },
+      }),
       bolsa,
       config,
     );
-    expect(comCorDaAlca.valido).toBe(true);
+    expect(resultado.valido).toBe(true);
+  });
+
+  it('aceita adicional sem opções (alça de corrente)', () => {
+    const resultado = validarPersonalizacao(
+      personalizacaoValida({
+        adicionaisSelecionados: { 'alca-corrente': {} },
+      }),
+      bolsa,
+      config,
+    );
+    expect(resultado.valido).toBe(true);
   });
 
   it('valida quantidade como inteiro entre 1 e o máximo (RN-11)', () => {

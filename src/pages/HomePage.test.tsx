@@ -21,15 +21,6 @@ describe('HomePage', () => {
     expect(screen.getAllByRole('link', { name: 'Ver detalhes' }).length).toBeGreaterThan(0);
   });
 
-  it('filtra por categoria via ?categoria=', () => {
-    renderizarHome('/?categoria=alcas');
-    expect(screen.getByRole('heading', { name: 'Alças' })).toBeInTheDocument();
-    expect(
-      screen.getByRole('heading', { name: 'Alça de Crochê Clássica' }),
-    ).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { name: 'Bolsa Lua' })).not.toBeInTheDocument();
-  });
-
   it('mostra estado vazio amigável para categoria sem produtos', () => {
     renderizarHome('/?categoria=inexistente');
     expect(
@@ -38,22 +29,22 @@ describe('HomePage', () => {
     expect(screen.getByRole('link', { name: 'Ver todas as peças' })).toBeInTheDocument();
   });
 
-  it('exibe preço "a partir de" quando o produto permite alça', () => {
+  it('exibe preço "a partir de" quando o produto tem adicionais', () => {
     renderizarHome();
     expect(screen.getAllByText('a partir de').length).toBe(
-      produtos.filter((p) => p.permiteAlca).length,
+      produtos.filter((p) => p.adicionais.length > 0).length,
     );
   });
 
   it('filtra por busca via ?busca=, ignorando acentos', () => {
-    renderizarHome('/?busca=alca');
+    renderizarHome('/?busca=venus');
     expect(
-      screen.getByRole('heading', { name: 'Resultados para "alca"' }),
+      screen.getByRole('heading', { name: 'Resultados para "venus"' }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: 'Alça de Crochê Clássica' }),
+      screen.getByRole('heading', { name: 'Bolsa Vênus' }),
     ).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { name: 'Capinha de AirPods' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Bolsa Marte' })).not.toBeInTheDocument();
   });
 
   it('busca sem resultados mostra mensagem amigável', () => {
@@ -67,9 +58,9 @@ describe('HomePage', () => {
   });
 
   it('busca combinada com categoria filtra dentro da categoria', () => {
-    renderizarHome('/?categoria=bolsas&busca=lua');
-    expect(screen.getByRole('heading', { name: 'Bolsa Lua' })).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { name: 'Bolsa Sol' })).not.toBeInTheDocument();
+    renderizarHome('/?categoria=bolsas&busca=marte');
+    expect(screen.getByRole('heading', { name: 'Bolsa Marte' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Bolsa Vênus' })).not.toBeInTheDocument();
   });
 
   it('exibe o botão flutuante que abre o WhatsApp da loja', () => {

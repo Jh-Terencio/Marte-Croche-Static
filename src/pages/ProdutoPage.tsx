@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import type { PersonalizacaoItem, ItemCarrinho } from '../types/carrinho';
+import type { PersonalizacaoItem, ItemCarrinho, AdicionalEscolhido } from '../types/carrinho';
 import type { Produto } from '../types/produto';
 import { produtoPorId } from '../data/produtos';
 import { nomeDaCategoria } from '../data/categorias';
@@ -10,7 +10,7 @@ import { validarPersonalizacao } from '../lib/validacao';
 import { useCarrinho } from '../context/CarrinhoContext';
 import { ProductGallery } from '../components/produto/ProductGallery';
 import { ColorSelector } from '../components/produto/ColorSelector';
-import { StrapOptions } from '../components/produto/StrapOptions';
+import { AdicionaisSelector } from '../components/produto/AdicionaisSelector';
 import { QuantitySelector } from '../components/produto/QuantitySelector';
 import { PriceSummary } from '../components/produto/PriceSummary';
 import { Botao } from '../components/comuns/Botao';
@@ -19,10 +19,10 @@ import { EstadoVazio } from '../components/comuns/EstadoVazio';
 import styles from './ProdutoPage.module.css';
 
 const PERSONALIZACAO_INICIAL: PersonalizacaoItem = {
+  quantidadeCores: 1,
   corPrincipalId: null,
   corSecundariaId: null,
-  comAlca: false,
-  corAlcaId: null,
+  adicionaisSelecionados: {},
   quantidade: 1,
   observacoes: '',
 };
@@ -35,11 +35,20 @@ function gerarIdDeItem(): string {
 }
 
 function personalizacaoDoItem(item: ItemCarrinho): PersonalizacaoItem {
+  const adicionaisSelecionados: Record<string, Record<string, string | null>> = {};
+  for (const adicional of item.adicionais) {
+    const opcoes: Record<string, string | null> = {};
+    for (const opcao of adicional.opcoes) {
+      opcoes[opcao.opcaoId] = opcao.valorId;
+    }
+    adicionaisSelecionados[adicional.adicionalId] = opcoes;
+  }
+
   return {
+    quantidadeCores: item.corSecundaria ? 2 : 1,
     corPrincipalId: item.corPrincipal?.id ?? null,
     corSecundariaId: item.corSecundaria?.id ?? null,
-    comAlca: item.comAlca,
-    corAlcaId: item.corAlca?.id ?? null,
+    adicionaisSelecionados,
     quantidade: item.quantidade,
     observacoes: item.observacoes,
   };
@@ -53,11 +62,29 @@ function montarItem(
   const corPrincipal =
     produto.cores.find((c) => c.id === personalizacao.corPrincipalId) ?? null;
   const corSecundaria =
-    produto.cores.find((c) => c.id === personalizacao.corSecundariaId) ?? null;
-  const comAlca = produto.permiteAlca && personalizacao.comAlca;
-  const corAlca = comAlca
-    ? (produto.coresAlca.find((c) => c.id === personalizacao.corAlcaId) ?? null)
-    : null;
+    personalizacao.quantidadeCores === 2
+      ? (produto.cores.find((c) => c.id === personalizacao.corSecundariaId) ?? null)
+      : null;
+
+  const adicionaisIds = Object.keys(personalizacao.adicionaisSelecionados);
+  const adicionais: AdicionalEscolhido[] = produto.adicionais
+    .filter((a) => adicionaisIds.includes(a.id))
+    .map((a) => ({
+      adicionalId: a.id,
+      nomeAdicional: a.nome,
+      precoCentavos: a.precoCentavos,
+      opcoes: a.opcoes
+        .filter((o) => personalizacao.adicionaisSelecionados[a.id]?.[o.id])
+        .map((o) => ({
+          opcaoId: o.id,
+          nomeOpcao: o.legenda,
+          valorId: personalizacao.adicionaisSelecionados[a.id][o.id]!,
+          valorNome:
+            o.valores.find(
+              (v) => v.id === personalizacao.adicionaisSelecionados[a.id][o.id],
+            )?.nome ?? '',
+        })),
+    }));
 
   return {
     id,
@@ -68,21 +95,15 @@ function montarItem(
       corPrincipal && corPrincipal.imagens.length > 0
         ? corPrincipal.imagens[0]
         : (produto.imagensPadrao[0] ?? ''),
-    precoUnitarioCentavos: precoUnitario(produto, comAlca, config),
+    precoUnitarioCentavos: precoUnitario(produto, adicionaisIds),
     quantidade: personalizacao.quantidade,
     corPrincipal: corPrincipal && { id: corPrincipal.id, nome: corPrincipal.nome },
     corSecundaria: corSecundaria && { id: corSecundaria.id, nome: corSecundaria.nome },
-    comAlca,
-    corAlca: corAlca && { id: corAlca.id, nome: corAlca.nome },
+    adicionais,
     observacoes: personalizacao.observacoes,
   };
 }
 
-/**
- * Página do produto (FR-012..FR-020): personalização completa com a
- * galeria acompanhando a primeira cor. Com ?editar=<itemId>, carrega a
- * personalização do item do carrinho e atualiza em vez de adicionar.
- */
 export function ProdutoPage() {
   const { id } = useParams<{ id: string }>();
   const [parametros] = useSearchParams();
@@ -125,6 +146,8 @@ export function ProdutoPage() {
     navegar('/carrinho');
   }
 
+  const podeTerDuasCores = produto.cores.length > 1;
+
   const coresRepetidasProibidas =
     !produto.permiteCorRepetida && personalizacao.corPrincipalId
       ? {
@@ -132,6 +155,37 @@ export function ProdutoPage() {
           motivo: 'Este modelo não permite repetir a mesma cor.',
         }
       : undefined;
+
+  function toggleAdicional(adicionalId: string) {
+    setPersonalizacao((atual) => {
+      const novo = { ...atual.adicionaisSelecionados };
+      if (adicionalId in novo) {
+        delete novo[adicionalId];
+      } else {
+        novo[adicionalId] = {};
+      }
+      return { ...atual, adicionaisSelecionados: novo };
+    });
+  }
+
+  function setOpcaoAdicional(
+    adicionalId: string,
+    opcaoId: string,
+    valorId: string | null,
+  ) {
+    setPersonalizacao((atual) => ({
+      ...atual,
+      adicionaisSelecionados: {
+        ...atual.adicionaisSelecionados,
+        [adicionalId]: {
+          ...atual.adicionaisSelecionados[adicionalId],
+          [opcaoId]: valorId,
+        },
+      },
+    }));
+  }
+
+  const adicionaisIds = Object.keys(personalizacao.adicionaisSelecionados);
 
   return (
     <div className={styles.pagina}>
@@ -171,14 +225,38 @@ export function ProdutoPage() {
 
           {produto.cores.length > 0 && (
             <>
+              {podeTerDuasCores && (
+                <fieldset className={styles.toggleCores}>
+                  <legend className={styles.legendaCores}>Quantas cores?</legend>
+                  <div className={styles.opcoesCores}>
+                    <button
+                      type="button"
+                      className={styles.opcaoCor}
+                      aria-pressed={personalizacao.quantidadeCores === 1}
+                      onClick={() =>
+                        alterar({ quantidadeCores: 1, corSecundariaId: null })
+                      }
+                    >
+                      1 cor
+                    </button>
+                    <button
+                      type="button"
+                      className={styles.opcaoCor}
+                      aria-pressed={personalizacao.quantidadeCores === 2}
+                      onClick={() => alterar({ quantidadeCores: 2 })}
+                    >
+                      2 cores
+                    </button>
+                  </div>
+                </fieldset>
+              )}
+
               <ColorSelector
-                legenda="Cor principal"
+                legenda={personalizacao.quantidadeCores === 2 ? 'Cor principal' : 'Cor'}
                 obrigatoriedade="obrigatória"
                 cores={produto.cores}
                 selecionadaId={personalizacao.corPrincipalId}
                 onSelecionar={(corId) => {
-                  // trocar a cor principal não apaga as demais escolhas (FR-016);
-                  // apenas a segunda cor é ajustada se a repetição for proibida
                   const mudanca: Partial<PersonalizacaoItem> = {
                     corPrincipalId: corId,
                   };
@@ -194,20 +272,16 @@ export function ProdutoPage() {
               />
               {erros.corPrincipal && <MensagemErro>{erros.corPrincipal}</MensagemErro>}
 
-              {produto.cores.length > 1 && (
+              {personalizacao.quantidadeCores === 2 && (
                 <>
                   <ColorSelector
                     legenda="Segunda cor"
-                    obrigatoriedade="opcional"
+                    obrigatoriedade="obrigatória"
                     cores={produto.cores}
                     selecionadaId={personalizacao.corSecundariaId}
                     onSelecionar={(corId) => alterar({ corSecundariaId: corId })}
                     desabilitadas={coresRepetidasProibidas}
-                    permiteDesmarcar
                   />
-                  <p className={styles.dicaCores}>
-                    A bolsa pode combinar no máximo duas cores.
-                  </p>
                   {erros.corSecundaria && (
                     <MensagemErro>{erros.corSecundaria}</MensagemErro>
                   )}
@@ -216,16 +290,13 @@ export function ProdutoPage() {
             </>
           )}
 
-          <StrapOptions
-            produto={produto}
-            comAlca={personalizacao.comAlca}
-            corAlcaId={personalizacao.corAlcaId}
-            onAlterarAlca={(comAlca) =>
-              alterar(comAlca ? { comAlca } : { comAlca, corAlcaId: null })
-            }
-            onSelecionarCorAlca={(corId) => alterar({ corAlcaId: corId })}
+          <AdicionaisSelector
+            adicionais={produto.adicionais}
+            selecionados={personalizacao.adicionaisSelecionados}
+            onToggle={toggleAdicional}
+            onOpcao={setOpcaoAdicional}
+            erros={erros}
           />
-          {erros.corAlca && <MensagemErro>{erros.corAlca}</MensagemErro>}
 
           <QuantitySelector
             quantidade={personalizacao.quantidade}
@@ -250,7 +321,7 @@ export function ProdutoPage() {
 
           <PriceSummary
             produto={produto}
-            comAlca={produto.permiteAlca && personalizacao.comAlca}
+            adicionaisIds={adicionaisIds}
             quantidade={personalizacao.quantidade}
           />
 

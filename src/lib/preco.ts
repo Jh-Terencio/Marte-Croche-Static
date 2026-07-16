@@ -1,21 +1,19 @@
 import type { Produto } from '../types/produto';
 import type { ItemCarrinho } from '../types/carrinho';
-import type { ConfiguracaoLoja } from '../data/config';
 
 /**
- * Cálculo de preços (RN-01..03) — funções puras em centavos.
- * O acréscimo da alça vem SEMPRE da configuração central.
+ * Cálculo de preços — funções puras em centavos.
+ * O acréscimo de cada adicional vem do campo precoCentavos no catálogo.
  */
 
-/** Preço unitário: base + alça quando o produto permite e o cliente escolheu. */
 export function precoUnitario(
   produto: Produto,
-  comAlca: boolean,
-  config: ConfiguracaoLoja,
+  adicionaisSelecionadosIds: string[],
 ): number {
-  const acrescimoAlca =
-    produto.permiteAlca && comAlca ? config.precoAlcaComBolsaCentavos : 0;
-  return produto.precoBaseCentavos + acrescimoAlca;
+  const acrescimo = produto.adicionais
+    .filter((a) => adicionaisSelecionadosIds.includes(a.id))
+    .reduce((soma, a) => soma + a.precoCentavos, 0);
+  return produto.precoBaseCentavos + acrescimo;
 }
 
 /** Subtotal do item: preço unitário × quantidade. */

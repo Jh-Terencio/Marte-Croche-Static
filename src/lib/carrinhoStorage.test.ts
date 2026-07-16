@@ -39,7 +39,18 @@ describe('carrinhoStorage', () => {
     const storage = criarStorageFalso();
     const itens = [
       criarItemTeste({ id: 'a' }),
-      criarItemTeste({ id: 'b', quantidade: 3, comAlca: true, corAlca: { id: 'preto', nome: 'Preto' } }),
+      criarItemTeste({
+        id: 'b',
+        quantidade: 3,
+        adicionais: [
+          {
+            adicionalId: 'alca-corrente',
+            nomeAdicional: 'Alça de corrente',
+            precoCentavos: 1500,
+            opcoes: [],
+          },
+        ],
+      }),
     ];
     salvarCarrinho(storage, itens);
     expect(carregarCarrinho(storage)).toEqual(itens);
@@ -100,8 +111,7 @@ describe('carrinhoStorage', () => {
       'quantidade',
       'corPrincipal',
       'corSecundaria',
-      'comAlca',
-      'corAlca',
+      'adicionais',
       'observacoes',
     ].sort();
     expect(Object.keys(persistido).sort()).toEqual(['itens', 'versao']);

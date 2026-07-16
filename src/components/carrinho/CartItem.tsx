@@ -13,11 +13,6 @@ interface CartItemProps {
   onRemover: () => void;
 }
 
-/**
- * Item do carrinho (FR-021..023): personalizações completas, quantidade
- * editável, subtotal e ações. Se o produto saiu do catálogo (edge case
- * da spec), o item avisa e permite apenas remoção — nunca quebra.
- */
 export function CartItem({ item, onAlterarQuantidade, onRemover }: CartItemProps) {
   const produtoAindaExiste = produtoPorId(item.produtoId) !== undefined;
 
@@ -44,7 +39,14 @@ export function CartItem({ item, onAlterarQuantidade, onRemover }: CartItemProps
           ) : (
             item.corPrincipal && <li>Cor: {item.corPrincipal.nome}</li>
           )}
-          {item.comAlca && item.corAlca && <li>Com alça · Cor da alça: {item.corAlca.nome}</li>}
+          {item.adicionais.map((adicional) => (
+            <li key={adicional.adicionalId}>
+              {adicional.nomeAdicional}
+              {adicional.opcoes.map((opcao) => (
+                <span key={opcao.opcaoId}> · {opcao.nomeOpcao}: {opcao.valorNome}</span>
+              ))}
+            </li>
+          ))}
           {item.observacoes && <li>Observações: {item.observacoes}</li>}
         </ul>
 

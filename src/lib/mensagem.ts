@@ -1,16 +1,8 @@
 import type { ItemCarrinho } from '../types/carrinho';
 import type { DadosCliente } from '../types/cliente';
 import type { ConfiguracaoLoja } from '../data/config';
-import { produtoPorId } from '../data/produtos';
 import { formatarReais, mascaraTelefone, mascaraCep } from './formatacao';
 import { subtotal, totalPedido } from './preco';
-
-/**
- * Montagem da mensagem do WhatsApp (contracts/mensagem-whatsapp.md,
- * Constituição §9). A prévia exibida na revisão é EXATAMENTE a string
- * retornada por montarMensagem; campos opcionais vazios são omitidos
- * por completo — sem rótulos vazios nem linhas em branco duplicadas.
- */
 
 function linhasDoItem(item: ItemCarrinho, numero: number): string {
   const linhas: string[] = [
@@ -25,13 +17,10 @@ function linhasDoItem(item: ItemCarrinho, numero: number): string {
     linhas.push(`Cor: ${item.corPrincipal.nome}`);
   }
 
-  // A linha "Alça:" só faz sentido para produtos com opção de alça.
-  // Se o produto saiu do catálogo, o item ainda informa via comAlca.
-  const permiteAlca = produtoPorId(item.produtoId)?.permiteAlca ?? item.comAlca;
-  if (permiteAlca) {
-    linhas.push(`Alça: ${item.comAlca ? 'Com alça' : 'Sem alça'}`);
-    if (item.comAlca && item.corAlca) {
-      linhas.push(`Cor da alça: ${item.corAlca.nome}`);
+  for (const adicional of item.adicionais) {
+    linhas.push(`Adicional: ${adicional.nomeAdicional}`);
+    for (const opcao of adicional.opcoes) {
+      linhas.push(`${opcao.nomeOpcao}: ${opcao.valorNome}`);
     }
   }
 

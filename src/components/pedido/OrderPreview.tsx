@@ -7,11 +7,9 @@ import styles from './OrderPreview.module.css';
 interface OrderPreviewProps {
   itens: ItemCarrinho[];
   dados: DadosCliente;
-  /** Saída exata de montarMensagem — exibida sem nenhuma alteração. */
   mensagem: string;
 }
 
-/** Revisão completa do pedido antes do envio (FR-030). */
 export function OrderPreview({ itens, dados, mensagem }: OrderPreviewProps) {
   return (
     <div className={styles.previa}>
@@ -28,9 +26,16 @@ export function OrderPreview({ itens, dados, mensagem }: OrderPreviewProps) {
               ) : (
                 item.corPrincipal && <span>Cor: {item.corPrincipal.nome}</span>
               )}
-              {item.comAlca && item.corAlca && (
-                <span>Com alça · {item.corAlca.nome}</span>
-              )}
+              {item.adicionais.map((adicional) => (
+                <span key={adicional.adicionalId}>
+                  {adicional.nomeAdicional}
+                  {adicional.opcoes.map((opcao) => (
+                    <span key={opcao.opcaoId}>
+                      {' '}· {opcao.nomeOpcao}: {opcao.valorNome}
+                    </span>
+                  ))}
+                </span>
+              ))}
               {item.observacoes && <span>Obs.: {item.observacoes}</span>}
               <span>
                 {item.quantidade} × {formatarReais(item.precoUnitarioCentavos)}

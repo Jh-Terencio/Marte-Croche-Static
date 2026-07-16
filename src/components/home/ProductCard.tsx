@@ -14,8 +14,8 @@ function resumoDasOpcoes(produto: Produto): string {
   if (produto.cores.length > 0) {
     partes.push(produto.cores.length === 1 ? '1 cor' : `${produto.cores.length} cores`);
   }
-  if (produto.permiteAlca) {
-    partes.push('com ou sem alça');
+  if (produto.adicionais.length > 0) {
+    partes.push('com adicionais');
   }
   return partes.join(' · ');
 }
@@ -35,7 +35,7 @@ export function ProductCard({ produto }: ProductCardProps) {
         <span className={styles.categoria}>{nomeDaCategoria(produto.categoriaId)}</span>
         <h3 className={styles.nome}>{produto.nome}</h3>
         <p className={styles.preco}>
-          {produto.permiteAlca && (
+          {produto.adicionais.length > 0 && (
             <span className={styles.aPartirDe}>a partir de</span>
           )}
           {formatarReais(produto.precoBaseCentavos)}

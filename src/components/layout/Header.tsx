@@ -23,6 +23,7 @@ export function Header() {
     <header className={styles.header}>
       <div className={styles.conteudo}>
         <Link to="/" className={styles.logo} onClick={() => window.scrollTo({ top: 0 })}>
+          {/* <img src="/images/logo/logo.png" alt="Marte Crochê" className={styles.logoImagem} /> */}
           Marte <em>Crochê</em>
         </Link>
         <div className={styles.acoes}>

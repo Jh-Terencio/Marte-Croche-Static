@@ -32,12 +32,20 @@ function itensDeTeste(): ItemCarrinho[] {
   return [
     criarItemTeste({
       id: 'a',
-      produtoId: 'bolsa-lua',
-      nomeProduto: 'Bolsa Lua',
+      produtoId: 'bolsa-marte',
+      nomeProduto: 'Bolsa Marte',
       categoriaNome: 'Bolsas',
-      precoUnitarioCentavos: 13500,
-      comAlca: true,
-      corAlca: { id: 'preto', nome: 'Preto' },
+      precoUnitarioCentavos: 16500,
+      adicionais: [
+        {
+          adicionalId: 'alca-longa-croche',
+          nomeAdicional: 'Alça longa de crochê',
+          precoCentavos: 1500,
+          opcoes: [
+            { opcaoId: 'cor-alca', nomeOpcao: 'Cor da alça', valorId: 'preto', valorNome: 'Preto' },
+          ],
+        },
+      ],
     }),
   ];
 }
@@ -72,7 +80,6 @@ describe('RevisaoPage', () => {
     const esperada = montarMensagem(itens, dadosDeTeste, config);
     const previa = screen.getByRole('region', { name: 'Prévia da mensagem' });
     expect(within(previa).getByText(/PEDIDO — Marte Crochê/).closest('pre')).toHaveTextContent(
-      // toHaveTextContent normaliza espaços; compara também o texto bruto
       'PEDIDO — Marte Crochê',
     );
     expect(previa.querySelector('pre')?.textContent).toBe(esperada);
@@ -87,7 +94,6 @@ describe('RevisaoPage', () => {
     const esperada = montarUrlWhatsApp(montarMensagem(itens, dadosDeTeste, config), config);
     expect(link).toHaveAttribute('href', esperada);
     expect(link).toHaveAttribute('target', '_blank');
-    // estado pós-envio ainda não existe
     expect(screen.queryByText(/pedido encaminhado/i)).not.toBeInTheDocument();
   });
 
@@ -99,20 +105,16 @@ describe('RevisaoPage', () => {
 
     await usuario.click(screen.getByRole('link', { name: /enviar pedido pelo whatsapp/i }));
 
-    // estado pós-envio com fallback e ações
     expect(screen.getByText('Pedido encaminhado ao WhatsApp')).toBeInTheDocument();
     expect(
       screen.getByRole('link', { name: /toque aqui para abrir o whatsapp/i }),
     ).toBeInTheDocument();
-    // carrinho intacto
     expect(JSON.parse(window.localStorage.getItem(CHAVE_CARRINHO)!).itens).toHaveLength(1);
 
-    // cancelar mantém o carrinho
     await usuario.click(screen.getByRole('button', { name: 'Novo pedido' }));
     await usuario.click(screen.getByRole('button', { name: 'Manter este pedido' }));
     expect(JSON.parse(window.localStorage.getItem(CHAVE_CARRINHO)!).itens).toHaveLength(1);
 
-    // confirmar esvazia e volta para a home
     await usuario.click(screen.getByRole('button', { name: 'Novo pedido' }));
     await usuario.click(
       screen.getByRole('button', { name: 'Esvaziar e começar de novo' }),

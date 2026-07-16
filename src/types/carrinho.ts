@@ -10,6 +10,20 @@ export interface CorEscolhida {
   nome: string;
 }
 
+export interface OpcaoEscolhida {
+  opcaoId: string;
+  nomeOpcao: string;
+  valorId: string;
+  valorNome: string;
+}
+
+export interface AdicionalEscolhido {
+  adicionalId: string;
+  nomeAdicional: string;
+  precoCentavos: number;
+  opcoes: OpcaoEscolhida[];
+}
+
 export interface ItemCarrinho {
   /** UUID gerado na adição. */
   id: string;
@@ -24,9 +38,7 @@ export interface ItemCarrinho {
   quantidade: number;
   corPrincipal: CorEscolhida | null;
   corSecundaria: CorEscolhida | null;
-  comAlca: boolean;
-  /** Presente ⇔ comAlca. */
-  corAlca: CorEscolhida | null;
+  adicionais: AdicionalEscolhido[];
   observacoes: string;
 }
 
@@ -41,10 +53,11 @@ export interface CarrinhoPersistido {
  * Validado por validarPersonalizacao antes de virar ItemCarrinho.
  */
 export interface PersonalizacaoItem {
+  quantidadeCores: 1 | 2;
   corPrincipalId: string | null;
   corSecundariaId: string | null;
-  comAlca: boolean;
-  corAlcaId: string | null;
+  /** adicionalId → { opcaoId → valorId | null } */
+  adicionaisSelecionados: Record<string, Record<string, string | null>>;
   quantidade: number;
   observacoes: string;
 }

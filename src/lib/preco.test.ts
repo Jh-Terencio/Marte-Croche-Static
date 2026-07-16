@@ -1,38 +1,30 @@
 import { precoUnitario, subtotal, totalPedido } from './preco';
-import { criarConfigTeste, criarProdutoTeste, criarItemTeste } from '../test/fixtures';
-
-const config = criarConfigTeste();
+import { criarProdutoTeste, criarItemTeste } from '../test/fixtures';
 
 describe('precoUnitario', () => {
-  it('bolsa sem alça custa o preço base (RN-01)', () => {
+  it('sem adicionais custa o preço base', () => {
     const bolsa = criarProdutoTeste({ precoBaseCentavos: 12000 });
-    expect(precoUnitario(bolsa, false, config)).toBe(12000);
+    expect(precoUnitario(bolsa, [])).toBe(12000);
   });
 
-  it('bolsa com alça acresce R$ 15,00 (RN-01)', () => {
+  it('com um adicional selecionado acresce o preço do adicional', () => {
     const bolsa = criarProdutoTeste({ precoBaseCentavos: 12000 });
-    expect(precoUnitario(bolsa, true, config)).toBe(13500);
+    expect(precoUnitario(bolsa, ['alca-corrente'])).toBe(13500);
   });
 
-  it('alça avulsa custa R$ 20,00 (RN-02)', () => {
-    const alca = criarProdutoTeste({
-      id: 'alca-teste',
-      categoriaId: 'alcas',
-      precoBaseCentavos: config.precoAlcaAvulsaCentavos,
-      permiteAlca: false,
-    });
-    expect(precoUnitario(alca, false, config)).toBe(2000);
+  it('com múltiplos adicionais soma todos os acréscimos', () => {
+    const bolsa = criarProdutoTeste({ precoBaseCentavos: 12000 });
+    expect(precoUnitario(bolsa, ['alca-corrente', 'alca-longa-croche'])).toBe(15000);
   });
 
-  it('ignora o acréscimo quando o produto não permite alça', () => {
-    const capinha = criarProdutoTeste({ permiteAlca: false, precoBaseCentavos: 4500 });
-    expect(precoUnitario(capinha, true, config)).toBe(4500);
-  });
-
-  it('usa o valor da configuração central, não um número fixo (RN-03)', () => {
+  it('ignora IDs de adicionais que não existem no produto', () => {
     const bolsa = criarProdutoTeste({ precoBaseCentavos: 10000 });
-    const configCustom = criarConfigTeste({ precoAlcaComBolsaCentavos: 1800 });
-    expect(precoUnitario(bolsa, true, configCustom)).toBe(11800);
+    expect(precoUnitario(bolsa, ['adicional-inexistente'])).toBe(10000);
+  });
+
+  it('produto sem adicionais disponíveis retorna apenas o preço base', () => {
+    const capinha = criarProdutoTeste({ adicionais: [], precoBaseCentavos: 4500 });
+    expect(precoUnitario(capinha, [])).toBe(4500);
   });
 });
 
@@ -52,10 +44,10 @@ describe('totalPedido', () => {
     expect(totalPedido([])).toBe(0);
   });
 
-  it('soma subtotais de carrinho misto (bolsa com alça ×2 + alça avulsa ×1)', () => {
+  it('soma subtotais de carrinho misto', () => {
     const itens = [
-      criarItemTeste({ id: 'a', precoUnitarioCentavos: 13500, quantidade: 2, comAlca: true }),
-      criarItemTeste({ id: 'b', produtoId: 'alca-teste', precoUnitarioCentavos: 2000, quantidade: 1 }),
+      criarItemTeste({ id: 'a', precoUnitarioCentavos: 13500, quantidade: 2 }),
+      criarItemTeste({ id: 'b', precoUnitarioCentavos: 2000, quantidade: 1 }),
     ];
     expect(totalPedido(itens)).toBe(29000);
   });
