@@ -2,7 +2,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { categorias } from '../data/categorias';
 import { produtos } from '../data/produtos';
 import { filtrarProdutos } from '../lib/busca';
-import { HeroCarousel } from '../components/home/HeroCarousel';
+// import { HeroCarousel } from '../components/home/HeroCarousel';
 import { ProductGrid } from '../components/home/ProductGrid';
 import { WhatsAppFloatButton } from '../components/home/WhatsAppFloatButton';
 import { EstadoVazio } from '../components/comuns/EstadoVazio';
