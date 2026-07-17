@@ -44,6 +44,7 @@
 
 .descricao {
   color: var(--cor-texto);
+  white-space: pre-line;
 }
 
 .prazo,

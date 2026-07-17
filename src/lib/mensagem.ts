@@ -11,7 +11,7 @@ function linhasDoItem(item: ItemCarrinho, numero: number): string {
   ];
 
   if (item.corPrincipal && item.corSecundaria) {
-    linhas.push(`Cor principal: ${item.corPrincipal.nome}`);
+    linhas.push(`Cor principal (Cor da Alça): ${item.corPrincipal.nome}`);
     linhas.push(`Segunda cor: ${item.corSecundaria.nome}`);
   } else if (item.corPrincipal) {
     linhas.push(`Cor: ${item.corPrincipal.nome}`);

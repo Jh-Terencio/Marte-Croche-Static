@@ -33,7 +33,7 @@ export function CartItem({ item, onAlterarQuantidade, onRemover }: CartItemProps
         <ul className={styles.personalizacoes}>
           {item.corPrincipal && item.corSecundaria ? (
             <>
-              <li>Cor principal: {item.corPrincipal.nome}</li>
+              <li>Cor principal (Cor da Alça): {item.corPrincipal.nome}</li>
               <li>Segunda cor: {item.corSecundaria.nome}</li>
             </>
           ) : (

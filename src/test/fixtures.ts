@@ -39,6 +39,7 @@ export function criarProdutoTeste(sobrescrever: Partial<Produto> = {}): Produto 
       },
     ],
     permiteCorRepetida: false,
+    permiteDuasCores: true,
     adicionais: [
       {
         id: 'alca-corrente',

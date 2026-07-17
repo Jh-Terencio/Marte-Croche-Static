@@ -146,7 +146,7 @@ export function ProdutoPage() {
     navegar('/carrinho');
   }
 
-  const podeTerDuasCores = produto.cores.length > 1;
+  const podeTerDuasCores = produto.permiteDuasCores && produto.cores.length > 1;
 
   const coresRepetidasProibidas =
     !produto.permiteCorRepetida && personalizacao.corPrincipalId
@@ -252,7 +252,7 @@ export function ProdutoPage() {
               )}
 
               <ColorSelector
-                legenda={personalizacao.quantidadeCores === 2 ? 'Cor principal' : 'Cor'}
+                legenda={personalizacao.quantidadeCores === 2 ? 'Cor principal (Cor da Alça)' : 'Cor'}
                 obrigatoriedade="obrigatória"
                 cores={produto.cores}
                 selecionadaId={personalizacao.corPrincipalId}

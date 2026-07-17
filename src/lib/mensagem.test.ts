@@ -170,8 +170,8 @@ CEP: 01234-567`;
   it('produto sem adicionais não gera linha "Adicional:"', () => {
     const capinha = criarItemTeste({
       produtoId: 'capinha-teste',
-      nomeProduto: 'Capinha de AirPods',
-      categoriaNome: 'Capinhas de AirPods',
+      nomeProduto: 'Capinha de Fones',
+      categoriaNome: 'Capinhas de Fones',
       precoUnitarioCentavos: 4500,
     });
     const mensagem = montarMensagem([capinha], dadosCompletos(), config);

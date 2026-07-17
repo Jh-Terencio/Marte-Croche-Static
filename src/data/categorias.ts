@@ -4,7 +4,7 @@ import type { Categoria } from '../types/produto';
 export const categorias: Categoria[] = [
   { id: 'bolsas', nome: 'Bolsas' },
   { id: 'alcas', nome: 'Alças' },
-  { id: 'capinhas-airpods', nome: 'Capinhas de AirPods' },
+  { id: 'capinhas-fones', nome: 'Capinhas de Fones' },
 ];
 
 export function nomeDaCategoria(categoriaId: string): string {

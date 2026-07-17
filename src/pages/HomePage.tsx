@@ -36,7 +36,7 @@ export function HomePage() {
         Marte Crochê — bolsas, alças e capinhas artesanais de crochê
       </h1>
 
-      <HeroCarousel />
+      {/* <HeroCarousel /> */}
 
       <section className={styles.secaoProdutos} aria-labelledby="titulo-produtos">
         <div className={styles.cabecalhoSecao}>

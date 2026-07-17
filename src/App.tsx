@@ -3,6 +3,7 @@ import { CarrinhoProvider } from './context/CarrinhoContext';
 import { FinalizacaoProvider } from './context/FinalizacaoContext';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
+import { ScrollToTop } from './components/layout/ScrollToTop';
 import { HomePage } from './pages/HomePage';
 import { ProdutoPage } from './pages/ProdutoPage';
 import { CarrinhoPage } from './pages/CarrinhoPage';
@@ -15,6 +16,7 @@ function App() {
   return (
     <CarrinhoProvider>
       <FinalizacaoProvider>
+        <ScrollToTop />
         <Header />
         <main>
           <Routes>

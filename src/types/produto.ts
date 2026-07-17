@@ -60,6 +60,8 @@ export interface Produto {
   cores: CorDeProduto[];
   /** Mesma cor nas duas posições da bolsa (RN-05). */
   permiteCorRepetida: boolean;
+  /** false → só permite 1 cor, esconde o toggle "1 cor / 2 cores". */
+  permiteDuasCores: boolean;
   /** Adicionais disponíveis para este produto (alças, acessórios, etc.). */
   adicionais: AdicionalDoProduto[];
   /** Texto exibível (ex.: "7 a 10 dias úteis"). */

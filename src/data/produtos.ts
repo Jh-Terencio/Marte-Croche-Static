@@ -13,7 +13,7 @@ export const produtos: Produto[] = [
     nome: 'Bolsa Marte',
     categoriaId: 'bolsas',
     descricao:
-      'Medidas aproximadas: \nLargura: 26cm \nAltura: 16cm \nAlça: 40cm',
+      'Medidas aproximadas: \n- Largura: 26cm \n- Altura: 16cm \n- Alça: 40cm',
     precoBaseCentavos: 15000,
     imagensPadrao: ['/images/produtos/bolsa-marte/padrao/01-principal.webp'],
     cores: [
@@ -103,6 +103,7 @@ export const produtos: Produto[] = [
       },
     ],
     permiteCorRepetida: false,
+    permiteDuasCores: true,
     adicionais: [
       {
         id: 'alca-corrente',
@@ -148,7 +149,7 @@ export const produtos: Produto[] = [
     nome: 'Bolsa Vênus',
     categoriaId: 'bolsas',
     descricao:
-      'Medidas aproximadas: \nLargura: 26cm \nAltura: 16cm',
+      'Medidas aproximadas: \n- Largura: 26cm \n- Altura: 16cm',
     precoBaseCentavos: 15000,
     imagensPadrao: ['/images/produtos/bolsa-venus/padrao/01-principal.webp'],
     cores: [
@@ -234,6 +235,7 @@ export const produtos: Produto[] = [
       },
     ],
     permiteCorRepetida: true,
+    permiteDuasCores: true,
     adicionais: [
       {
         id: 'fecho-ima',
@@ -284,7 +286,7 @@ export const produtos: Produto[] = [
     nome: 'Bolsa Vênus Mini',
     categoriaId: 'bolsas',
     descricao:
-      'Medidas aproximadas: \nLargura: 19cm \nAltura: 13cm',
+      'Medidas aproximadas: \n- Largura: 19cm \n- Altura: 13cm',
     precoBaseCentavos: 9000,
     imagensPadrao: ['/images/produtos/bolsa-venus-mini/padrao/01-principal.webp'],
     cores: [
@@ -367,6 +369,7 @@ export const produtos: Produto[] = [
       },
     ],
     permiteCorRepetida: true,
+    permiteDuasCores: true,
     adicionais: [
       {
         id: 'fecho-ima',
@@ -417,7 +420,7 @@ export const produtos: Produto[] = [
     nome: 'Bolsa Vênus + Vênus Mini',
     categoriaId: 'bolsas',
     descricao:
-      'Medidas aproximadas: Vênus \nLargura: 26cm \nAltura: 16cm, Vênus Mini \nLargura: 19cm \nAltura: 13cm',
+      'Medidas aproximadas: \nVênus \n- Largura: 26cm \n- Altura: 16cm \nVênus Mini \n- Largura: 19cm \n- Altura: 13cm',
     precoBaseCentavos: 22000,
     imagensPadrao: ['/images/produtos/bolsa-venus-e-mini/padrao/01-principal.webp'],
     cores: [
@@ -500,6 +503,7 @@ export const produtos: Produto[] = [
       },
     ],
     permiteCorRepetida: true,
+    permiteDuasCores: true,
     adicionais: [
       {
         id: 'fecho-ima',
@@ -550,7 +554,7 @@ export const produtos: Produto[] = [
     nome: 'Bolsa Jupter M',
     categoriaId: 'bolsas',
     descricao:
-      'Medidas aproximadas: Vênus \nLargura: 40cm \nAltura: 29cm',
+      'Medidas aproximadas: \n- Largura: 40cm \n- Altura: 29cm',
     precoBaseCentavos: 22500,
     imagensPadrao: ['/images/produtos/bolsa-jupter-m/padrao/01-principal.webp'],
     cores: [
@@ -633,6 +637,7 @@ export const produtos: Produto[] = [
       },
     ],
     permiteCorRepetida: true,
+    permiteDuasCores: true,
     adicionais: [
       {
         id: 'fecho-ima',
@@ -677,7 +682,7 @@ export const produtos: Produto[] = [
     nome: 'Bolsa Jupter G',
     categoriaId: 'bolsas',
     descricao:
-      'Medidas aproximadas: Vênus \nLargura: 43cm \nAltura: 33cm',
+      'Medidas aproximadas: \n- Largura: 43cm \n- Altura: 33cm',
     precoBaseCentavos: 26000,
     imagensPadrao: ['/images/produtos/bolsa-jupter-g/padrao/01-principal.webp'],
     cores: [
@@ -760,6 +765,7 @@ export const produtos: Produto[] = [
       },
     ],
     permiteCorRepetida: true,
+    permiteDuasCores: true,
     adicionais: [
       {
         id: 'fecho-ima',
@@ -798,6 +804,292 @@ export const produtos: Produto[] = [
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
     termosDeBusca: ['bolsa', 'croche', 'artesanal', 'jupter', 'compacta', 'passeio'],
+  },
+  {
+    id: 'alca-espiral',
+    nome: 'Alça Espiral',
+    categoriaId: 'alcas',
+    descricao:
+      'Medidas aproximadas: \n- Comprimento: 43cm',
+    precoBaseCentavos: 4500,
+    imagensPadrao: ['/images/produtos/alca-espiral/padrao/01-principal.webp'],
+    cores: [
+      {
+        id: 'vinho',
+        nome: 'Vinho',
+        valorVisual: '#681119',
+        imagens: [
+          '/images/produtos/alca-espiral/vinho/01-principal.webp',
+        ],
+      },
+      {
+        id: 'bege',
+        nome: 'Bege',
+        valorVisual: '#e4c5b0',
+        imagens: [],
+      },
+      {
+        id: 'branco',
+        nome: 'Branco',
+        valorVisual: '#f0eff4',
+        imagens: [],
+      },
+      {
+        id: 'azul-marinho',
+        nome: 'Azul Marinho',
+        valorVisual: '#383757',
+        imagens: [
+        ],
+      },
+      {
+        id: 'amarelo-manteiga',
+        nome: 'Amarelo Manteiga',
+        valorVisual: '#efc96e',
+        imagens: [],
+      },
+      {
+        id: 'rosa-bebe',
+        nome: 'Rosa Bebê',
+        valorVisual: '#fdcee1',
+        imagens: [],
+      },
+      {
+        id: 'azul-bebe',
+        nome: 'Azul Bebê',
+        valorVisual: '#ceebf6',
+        imagens: [],
+      },
+      {
+        id: 'lavanda',
+        nome: 'Lavânda',
+        valorVisual: '#c195d2',
+        imagens: [],
+      },
+      {
+        id: 'esmeralda',
+        nome: 'Esmeralda',
+        valorVisual: '#0f5555',
+        imagens: [],
+      },
+      {
+        id: 'chocolate',
+        nome: 'Chocolate',
+        valorVisual: '#3b1d20',
+        imagens: [
+        ],
+      },
+      {
+        id: 'preto',
+        nome: 'Preto',
+        valorVisual: '#0c0c17',
+        imagens: [
+        ],
+      },
+      {
+        id: 'grafite',
+        nome: 'Grafite',
+        valorVisual: '#413e45',
+        imagens: [],
+      },
+    ],
+    permiteCorRepetida: false,
+    permiteDuasCores: false,
+    adicionais: [
+    ],
+    prazoConfeccao: '7 a 10 dias úteis',
+    disponivel: true,
+    termosDeBusca: ['alca', 'croche', 'artesanal', 'espiral'],
+  },
+  {
+    id: 'alca-longa',
+    nome: 'Alça Longa',
+    categoriaId: 'alcas',
+    descricao:
+      'Medidas aproximadas: \n- Comprimento: 100 ou 110 ou 120cm',
+    precoBaseCentavos: 4500,
+    imagensPadrao: ['/images/produtos/alca-longa/padrao/01-principal.webp'],
+    cores: [
+      {
+        id: 'vinho',
+        nome: 'Vinho',
+        valorVisual: '#681119',
+        imagens: [
+        ],
+      },
+      {
+        id: 'bege',
+        nome: 'Bege',
+        valorVisual: '#e4c5b0',
+        imagens: [],
+      },
+      {
+        id: 'branco',
+        nome: 'Branco',
+        valorVisual: '#f0eff4',
+        imagens: [],
+      },
+      {
+        id: 'azul-marinho',
+        nome: 'Azul Marinho',
+        valorVisual: '#383757',
+        imagens: [
+          '/images/produtos/alca-longa/azul-marinho/01-principal.webp',
+          '/images/produtos/alca-longa/azul-marinho/02-principal.webp',
+        ],
+      },
+      {
+        id: 'amarelo-manteiga',
+        nome: 'Amarelo Manteiga',
+        valorVisual: '#efc96e',
+        imagens: [],
+      },
+      {
+        id: 'rosa-bebe',
+        nome: 'Rosa Bebê',
+        valorVisual: '#fdcee1',
+        imagens: [],
+      },
+      {
+        id: 'azul-bebe',
+        nome: 'Azul Bebê',
+        valorVisual: '#ceebf6',
+        imagens: [],
+      },
+      {
+        id: 'lavanda',
+        nome: 'Lavânda',
+        valorVisual: '#c195d2',
+        imagens: [],
+      },
+      {
+        id: 'esmeralda',
+        nome: 'Esmeralda',
+        valorVisual: '#0f5555',
+        imagens: [],
+      },
+      {
+        id: 'chocolate',
+        nome: 'Chocolate',
+        valorVisual: '#3b1d20',
+        imagens: [
+        ],
+      },
+      {
+        id: 'preto',
+        nome: 'Preto',
+        valorVisual: '#0c0c17',
+        imagens: [
+        ],
+      },
+      {
+        id: 'grafite',
+        nome: 'Grafite',
+        valorVisual: '#413e45',
+        imagens: [],
+      },
+    ],
+    permiteCorRepetida: false,
+    permiteDuasCores: false,
+    adicionais: [
+    ],
+    prazoConfeccao: '7 a 10 dias úteis',
+    disponivel: true,
+    termosDeBusca: ['alca', 'croche', 'artesanal', 'longa'],
+  },
+  {
+    id: 'capinha-fone',
+    nome: 'Capa de Fone',
+    categoriaId: 'capinhas-fones',
+    descricao:
+      'Medidas aproximadas: \n- Largura: 9cm \n- Altura: 9cm',
+    precoBaseCentavos: 3500,
+    imagensPadrao: ['/images/produtos/capinha-fone/padrao/01-principal.webp'],
+    cores: [
+      {
+        id: 'vinho',
+        nome: 'Vinho',
+        valorVisual: '#681119',
+        imagens: [
+        ],
+      },
+      {
+        id: 'bege',
+        nome: 'Bege',
+        valorVisual: '#e4c5b0',
+        imagens: [],
+      },
+      {
+        id: 'branco',
+        nome: 'Branco',
+        valorVisual: '#f0eff4',
+        imagens: [],
+      },
+      {
+        id: 'azul-marinho',
+        nome: 'Azul Marinho',
+        valorVisual: '#383757',
+        imagens: [
+          '/images/produtos/alca-longa/azul-marinho/01-principal.webp',
+        ],
+      },
+      {
+        id: 'amarelo-manteiga',
+        nome: 'Amarelo Manteiga',
+        valorVisual: '#efc96e',
+        imagens: [],
+      },
+      {
+        id: 'rosa-bebe',
+        nome: 'Rosa Bebê',
+        valorVisual: '#fdcee1',
+        imagens: [],
+      },
+      {
+        id: 'azul-bebe',
+        nome: 'Azul Bebê',
+        valorVisual: '#ceebf6',
+        imagens: [],
+      },
+      {
+        id: 'lavanda',
+        nome: 'Lavânda',
+        valorVisual: '#c195d2',
+        imagens: [],
+      },
+      {
+        id: 'esmeralda',
+        nome: 'Esmeralda',
+        valorVisual: '#0f5555',
+        imagens: [],
+      },
+      {
+        id: 'chocolate',
+        nome: 'Chocolate',
+        valorVisual: '#3b1d20',
+        imagens: [
+        ],
+      },
+      {
+        id: 'preto',
+        nome: 'Preto',
+        valorVisual: '#0c0c17',
+        imagens: [
+        ],
+      },
+      {
+        id: 'grafite',
+        nome: 'Grafite',
+        valorVisual: '#413e45',
+        imagens: [],
+      },
+    ],
+    permiteCorRepetida: false,
+    permiteDuasCores: true,
+    adicionais: [
+    ],
+    prazoConfeccao: '7 a 10 dias úteis',
+    disponivel: true,
+    termosDeBusca: ['capinha', 'croche', 'artesanal', 'fone'],
   },
 ];
 
