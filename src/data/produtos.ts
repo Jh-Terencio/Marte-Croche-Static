@@ -151,7 +151,11 @@ export const produtos: Produto[] = [
     descricao:
       'Medidas aproximadas: \n- Largura: 26cm \n- Altura: 16cm',
     precoBaseCentavos: 15000,
-    imagensPadrao: ['/images/produtos/bolsa-venus/padrao/01-principal.webp'],
+    imagensPadrao: ['/images/produtos/bolsa-venus/chocolate/01-principal.webp',
+          '/images/produtos/bolsa-venus/chocolate/02-principal.webp',
+          '/images/produtos/bolsa-venus/chocolate/03-principal.webp',
+          '/images/produtos/bolsa-venus/chocolate/04-principal.webp'
+        ],
     cores: [
       {
         id: 'vinho',
@@ -902,6 +906,24 @@ export const produtos: Produto[] = [
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
     termosDeBusca: ['alca', 'croche', 'artesanal', 'espiral'],
+  },
+  {
+    id: 'alca-corrente',
+    nome: 'Alça Corrente',
+    categoriaId: 'alcas',
+    descricao:
+      'Medidas aproximadas: \n- Comprimento: 100cm',
+    precoBaseCentavos: 4500,
+    imagensPadrao: ['/images/produtos/alca-corrente/padrao/01-principal.webp'],
+    cores: [
+    ],
+    permiteCorRepetida: false,
+    permiteDuasCores: false,
+    adicionais: [
+    ],
+    prazoConfeccao: '7 a 10 dias úteis',
+    disponivel: true,
+    termosDeBusca: ['alca', 'correte', 'niquel', 'metal'],
   },
   {
     id: 'alca-longa',
