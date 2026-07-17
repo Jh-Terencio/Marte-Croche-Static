@@ -417,7 +417,7 @@ export const produtos: Produto[] = [
   },
   {
     id: 'bolsa-venus-e-mini',
-    nome: 'Bolsa Vênus + Vênus Mini',
+    nome: 'Kit Mãe e Filha',
     categoriaId: 'bolsas',
     descricao:
       'Medidas aproximadas: \nVênus \n- Largura: 26cm \n- Altura: 16cm \nVênus Mini \n- Largura: 19cm \n- Altura: 13cm',
