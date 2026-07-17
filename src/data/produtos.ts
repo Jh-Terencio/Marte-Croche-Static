@@ -105,12 +105,6 @@ export const produtos: Produto[] = [
     permiteCorRepetida: false,
     adicionais: [
       {
-        id: 'fecho-ima',
-        nome: 'Fecho de Imã',
-        precoCentavos: 2000,
-        opcoes: [],
-      },
-      {
         id: 'alca-corrente',
         nome: 'Alça de Corrente',
         precoCentavos: 4500,
@@ -146,7 +140,7 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
-    informacoesAdicionais: 'Pode ser feita em duas cores combinadas. Lavar à mão com sabão neutro.',
+    informacoesAdicionais: 'Fecho de Imã Incluso',
     termosDeBusca: ['bolsa', 'croche', 'artesanal', 'marte', 'duas cores'],
   },
   {
@@ -416,7 +410,394 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
-    termosDeBusca: ['bolsa', 'croche', 'artesanal', 'venus', 'compacta', 'passeio'],
+    termosDeBusca: ['bolsa', 'croche', 'artesanal', 'venus', 'mini', 'compacta', 'passeio'],
+  },
+  {
+    id: 'bolsa-venus-e-mini',
+    nome: 'Bolsa Vênus + Vênus Mini',
+    categoriaId: 'bolsas',
+    descricao:
+      'Medidas aproximadas: Vênus \nLargura: 26cm \nAltura: 16cm, Vênus Mini \nLargura: 19cm \nAltura: 13cm',
+    precoBaseCentavos: 22000,
+    imagensPadrao: ['/images/produtos/bolsa-venus-e-mini/padrao/01-principal.webp'],
+    cores: [
+      {
+        id: 'vinho',
+        nome: 'Vinho',
+        valorVisual: '#681119',
+        imagens: [
+        ],
+      },
+      {
+        id: 'bege',
+        nome: 'Bege',
+        valorVisual: '#e4c5b0',
+        imagens: [],
+      },
+      {
+        id: 'branco',
+        nome: 'Branco',
+        valorVisual: '#f0eff4',
+        imagens: [],
+      },
+      {
+        id: 'azul-marinho',
+        nome: 'Azul Marinho',
+        valorVisual: '#383757',
+        imagens: [
+          '/images/produtos/bolsa-venus-e-mini/azul-marinho/01-principal.webp',
+        ],
+      },
+      {
+        id: 'amarelo-manteiga',
+        nome: 'Amarelo Manteiga',
+        valorVisual: '#efc96e',
+        imagens: [],
+      },
+      {
+        id: 'rosa-bebe',
+        nome: 'Rosa Bebê',
+        valorVisual: '#fdcee1',
+        imagens: [],
+      },
+      {
+        id: 'azul-bebe',
+        nome: 'Azul Bebê',
+        valorVisual: '#ceebf6',
+        imagens: [],
+      },
+      {
+        id: 'lavanda',
+        nome: 'Lavânda',
+        valorVisual: '#c195d2',
+        imagens: [],
+      },
+      {
+        id: 'esmeralda',
+        nome: 'Esmeralda',
+        valorVisual: '#0f5555',
+        imagens: [],
+      },
+      {
+        id: 'chocolate',
+        nome: 'Chocolate',
+        valorVisual: '#3b1d20',
+        imagens: [
+        ],
+      },
+      {
+        id: 'preto',
+        nome: 'Preto',
+        valorVisual: '#0c0c17',
+        imagens: [
+        ],
+      },
+      {
+        id: 'grafite',
+        nome: 'Grafite',
+        valorVisual: '#413e45',
+        imagens: [],
+      },
+    ],
+    permiteCorRepetida: true,
+    adicionais: [
+      {
+        id: 'fecho-ima',
+        nome: 'Fecho de Imã',
+        precoCentavos: 2000,
+        opcoes: [],
+      },
+      {
+        id: 'alca-corrente',
+        nome: 'Alça de Corrente',
+        precoCentavos: 4500,
+        opcoes: [],
+      },
+      {
+        id: 'alca-longa-croche',
+        nome: 'Alça Longa de Crochê',
+        precoCentavos: 4500,
+        opcoes: [
+          {
+            id: 'cor-alca',
+            tipo: 'cor',
+            legenda: 'Cor da alça',
+            obrigatoria: true,
+            valores: [
+              { id: 'vinho', nome: 'Vinho', valorVisual: '#681119' },
+              { id: 'bege', nome: 'Bege', valorVisual: '#d9c7a7' },
+              { id: 'branco', nome: 'Branco', valorVisual: '#f0eff4' },
+              { id: 'azul-marinho', nome: 'Azul Marinho', valorVisual: '#383757' },
+              { id: 'amarelo-manteiga', nome: 'Amarelo Manteiga', valorVisual: '#efc96e' },
+              { id: 'rosa-bebe', nome: 'Rosa Bebê', valorVisual: '#fdcee1' },
+              { id: 'azul-bebe', nome: 'Azul Bebê', valorVisual: '#ceebf6' },
+              { id: 'lavanda', nome: 'Lavânda', valorVisual: '#c195d2' },
+              { id: 'esmeralda', nome: 'Esmeralda', valorVisual: '#0f5555' },
+              { id: 'chocolate', nome: 'Chocolate', valorVisual: '#3b1d20' },
+              { id: 'preto', nome: 'Preto', valorVisual: '#0c0c17' },
+              { id: 'grafite', nome: 'Grafite', valorVisual: '#413e45' },
+            ],
+          },
+        ],
+      },
+    ],
+    prazoConfeccao: '7 a 10 dias úteis',
+    disponivel: true,
+    termosDeBusca: ['bolsa', 'croche', 'artesanal', 'venus', 'mini', 'compacta', 'passeio'],
+  },
+  {
+    id: 'bolsa-jupter-m',
+    nome: 'Bolsa Jupter M',
+    categoriaId: 'bolsas',
+    descricao:
+      'Medidas aproximadas: Vênus \nLargura: 40cm \nAltura: 29cm',
+    precoBaseCentavos: 22500,
+    imagensPadrao: ['/images/produtos/bolsa-jupter-m/padrao/01-principal.webp'],
+    cores: [
+      {
+        id: 'vinho',
+        nome: 'Vinho',
+        valorVisual: '#681119',
+        imagens: [
+        ],
+      },
+      {
+        id: 'bege',
+        nome: 'Bege',
+        valorVisual: '#e4c5b0',
+        imagens: [],
+      },
+      {
+        id: 'branco',
+        nome: 'Branco',
+        valorVisual: '#f0eff4',
+        imagens: [],
+      },
+      {
+        id: 'azul-marinho',
+        nome: 'Azul Marinho',
+        valorVisual: '#383757',
+        imagens: [
+          '/images/produtos/bolsa-jupter-m/azul-marinho/01-principal.webp',
+        ],
+      },
+      {
+        id: 'amarelo-manteiga',
+        nome: 'Amarelo Manteiga',
+        valorVisual: '#efc96e',
+        imagens: [],
+      },
+      {
+        id: 'rosa-bebe',
+        nome: 'Rosa Bebê',
+        valorVisual: '#fdcee1',
+        imagens: [],
+      },
+      {
+        id: 'azul-bebe',
+        nome: 'Azul Bebê',
+        valorVisual: '#ceebf6',
+        imagens: [],
+      },
+      {
+        id: 'lavanda',
+        nome: 'Lavânda',
+        valorVisual: '#c195d2',
+        imagens: [],
+      },
+      {
+        id: 'esmeralda',
+        nome: 'Esmeralda',
+        valorVisual: '#0f5555',
+        imagens: [],
+      },
+      {
+        id: 'chocolate',
+        nome: 'Chocolate',
+        valorVisual: '#3b1d20',
+        imagens: [
+        ],
+      },
+      {
+        id: 'preto',
+        nome: 'Preto',
+        valorVisual: '#0c0c17',
+        imagens: [
+        ],
+      },
+      {
+        id: 'grafite',
+        nome: 'Grafite',
+        valorVisual: '#413e45',
+        imagens: [],
+      },
+    ],
+    permiteCorRepetida: true,
+    adicionais: [
+      {
+        id: 'fecho-ima',
+        nome: 'Fecho de Imã',
+        precoCentavos: 2000,
+        opcoes: [],
+      },
+      {
+        id: 'alca-longa-croche',
+        nome: 'Alça Longa de Crochê',
+        precoCentavos: 4500,
+        opcoes: [
+          {
+            id: 'cor-alca',
+            tipo: 'cor',
+            legenda: 'Cor da alça',
+            obrigatoria: true,
+            valores: [
+              { id: 'vinho', nome: 'Vinho', valorVisual: '#681119' },
+              { id: 'bege', nome: 'Bege', valorVisual: '#d9c7a7' },
+              { id: 'branco', nome: 'Branco', valorVisual: '#f0eff4' },
+              { id: 'azul-marinho', nome: 'Azul Marinho', valorVisual: '#383757' },
+              { id: 'amarelo-manteiga', nome: 'Amarelo Manteiga', valorVisual: '#efc96e' },
+              { id: 'rosa-bebe', nome: 'Rosa Bebê', valorVisual: '#fdcee1' },
+              { id: 'azul-bebe', nome: 'Azul Bebê', valorVisual: '#ceebf6' },
+              { id: 'lavanda', nome: 'Lavânda', valorVisual: '#c195d2' },
+              { id: 'esmeralda', nome: 'Esmeralda', valorVisual: '#0f5555' },
+              { id: 'chocolate', nome: 'Chocolate', valorVisual: '#3b1d20' },
+              { id: 'preto', nome: 'Preto', valorVisual: '#0c0c17' },
+              { id: 'grafite', nome: 'Grafite', valorVisual: '#413e45' },
+            ],
+          },
+        ],
+      },
+    ],
+    prazoConfeccao: '7 a 10 dias úteis',
+    disponivel: true,
+    termosDeBusca: ['bolsa', 'croche', 'artesanal', 'venus', 'mini', 'compacta', 'passeio'],
+  },
+  {
+    id: 'bolsa-jupter-g',
+    nome: 'Bolsa Jupter G',
+    categoriaId: 'bolsas',
+    descricao:
+      'Medidas aproximadas: Vênus \nLargura: 43cm \nAltura: 33cm',
+    precoBaseCentavos: 26000,
+    imagensPadrao: ['/images/produtos/bolsa-jupter-g/padrao/01-principal.webp'],
+    cores: [
+      {
+        id: 'vinho',
+        nome: 'Vinho',
+        valorVisual: '#681119',
+        imagens: [
+        ],
+      },
+      {
+        id: 'bege',
+        nome: 'Bege',
+        valorVisual: '#e4c5b0',
+        imagens: [],
+      },
+      {
+        id: 'branco',
+        nome: 'Branco',
+        valorVisual: '#f0eff4',
+        imagens: [],
+      },
+      {
+        id: 'azul-marinho',
+        nome: 'Azul Marinho',
+        valorVisual: '#383757',
+        imagens: [
+          '/images/produtos/bolsa-jupter-g/azul-marinho/01-principal.webp',
+        ],
+      },
+      {
+        id: 'amarelo-manteiga',
+        nome: 'Amarelo Manteiga',
+        valorVisual: '#efc96e',
+        imagens: [],
+      },
+      {
+        id: 'rosa-bebe',
+        nome: 'Rosa Bebê',
+        valorVisual: '#fdcee1',
+        imagens: [],
+      },
+      {
+        id: 'azul-bebe',
+        nome: 'Azul Bebê',
+        valorVisual: '#ceebf6',
+        imagens: [],
+      },
+      {
+        id: 'lavanda',
+        nome: 'Lavânda',
+        valorVisual: '#c195d2',
+        imagens: [],
+      },
+      {
+        id: 'esmeralda',
+        nome: 'Esmeralda',
+        valorVisual: '#0f5555',
+        imagens: [],
+      },
+      {
+        id: 'chocolate',
+        nome: 'Chocolate',
+        valorVisual: '#3b1d20',
+        imagens: [
+        ],
+      },
+      {
+        id: 'preto',
+        nome: 'Preto',
+        valorVisual: '#0c0c17',
+        imagens: [
+        ],
+      },
+      {
+        id: 'grafite',
+        nome: 'Grafite',
+        valorVisual: '#413e45',
+        imagens: [],
+      },
+    ],
+    permiteCorRepetida: true,
+    adicionais: [
+      {
+        id: 'fecho-ima',
+        nome: 'Fecho de Imã',
+        precoCentavos: 2000,
+        opcoes: [],
+      },
+      {
+        id: 'alca-longa-croche',
+        nome: 'Alça Longa de Crochê',
+        precoCentavos: 4500,
+        opcoes: [
+          {
+            id: 'cor-alca',
+            tipo: 'cor',
+            legenda: 'Cor da alça',
+            obrigatoria: true,
+            valores: [
+              { id: 'vinho', nome: 'Vinho', valorVisual: '#681119' },
+              { id: 'bege', nome: 'Bege', valorVisual: '#d9c7a7' },
+              { id: 'branco', nome: 'Branco', valorVisual: '#f0eff4' },
+              { id: 'azul-marinho', nome: 'Azul Marinho', valorVisual: '#383757' },
+              { id: 'amarelo-manteiga', nome: 'Amarelo Manteiga', valorVisual: '#efc96e' },
+              { id: 'rosa-bebe', nome: 'Rosa Bebê', valorVisual: '#fdcee1' },
+              { id: 'azul-bebe', nome: 'Azul Bebê', valorVisual: '#ceebf6' },
+              { id: 'lavanda', nome: 'Lavânda', valorVisual: '#c195d2' },
+              { id: 'esmeralda', nome: 'Esmeralda', valorVisual: '#0f5555' },
+              { id: 'chocolate', nome: 'Chocolate', valorVisual: '#3b1d20' },
+              { id: 'preto', nome: 'Preto', valorVisual: '#0c0c17' },
+              { id: 'grafite', nome: 'Grafite', valorVisual: '#413e45' },
+            ],
+          },
+        ],
+      },
+    ],
+    prazoConfeccao: '7 a 10 dias úteis',
+    disponivel: true,
+    termosDeBusca: ['bolsa', 'croche', 'artesanal', 'jupter', 'compacta', 'passeio'],
   },
 ];
 
