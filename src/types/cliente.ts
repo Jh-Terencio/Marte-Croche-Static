@@ -6,6 +6,8 @@
 
 export interface DadosCliente {
   nomeCompleto: string;
+  email: string;
+  cpf: string;
   telefone: string;
   cep: string;
   endereco: string;

@@ -8,6 +8,8 @@ const config = criarConfigTeste();
 function dadosCompletos(sobrescrever: Partial<DadosCliente> = {}): DadosCliente {
   return {
     nomeCompleto: 'Maria da Silva',
+    email: 'maria@exemplo.com',
+    cpf: '12345678901',
     telefone: '11912345678',
     cep: '01234567',
     endereco: 'Rua das Flores',

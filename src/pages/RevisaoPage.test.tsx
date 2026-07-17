@@ -16,6 +16,8 @@ import type { ItemCarrinho } from '../types/carrinho';
 
 const dadosDeTeste: DadosCliente = {
   nomeCompleto: 'Maria da Silva',
+  email: 'maria@exemplo.com',
+  cpf: '12345678901',
   telefone: '(11) 91234-5678',
   cep: '01234-567',
   endereco: 'Rua das Flores',

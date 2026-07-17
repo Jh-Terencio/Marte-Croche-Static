@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { useFinalizacao } from '../../context/FinalizacaoContext';
 import { validarDadosCliente, UFS } from '../../lib/validacao';
-import { mascaraTelefone, mascaraCep } from '../../lib/formatacao';
+import { mascaraTelefone, mascaraCep, mascaraCpf } from '../../lib/formatacao';
 import { config } from '../../data/config';
 import { CampoTexto } from './CampoTexto';
 import { CampoSelect } from './CampoSelect';
@@ -43,6 +43,26 @@ export function CheckoutForm({ onRevisar, onVoltarAoCarrinho }: CheckoutFormProp
         obrigatorio
         erro={erros.nomeCompleto}
         autoComplete="name"
+      />
+      <CampoTexto
+        rotulo="E-mail"
+        valor={dados.email}
+        onAlterar={(valor) => alterarDados({ email: valor })}
+        obrigatorio
+        erro={erros.email}
+        inputMode="email"
+        autoComplete="email"
+        placeholder="seuemail@exemplo.com"
+      />
+      <CampoTexto
+        rotulo="CPF"
+        valor={dados.cpf}
+        onAlterar={(valor) => alterarDados({ cpf: valor })}
+        obrigatorio
+        erro={erros.cpf}
+        mascara={mascaraCpf}
+        inputMode="numeric"
+        placeholder="123.456.789-01"
       />
       <CampoTexto
         rotulo="Telefone"

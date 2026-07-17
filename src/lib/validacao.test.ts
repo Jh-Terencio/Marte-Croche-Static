@@ -156,6 +156,8 @@ describe('validarPersonalizacao', () => {
 function dadosValidos(sobrescrever: Partial<DadosCliente> = {}): DadosCliente {
   return {
     nomeCompleto: 'Maria da Silva',
+    email: 'maria@exemplo.com',
+    cpf: '123.456.789-01',
     telefone: '(11) 91234-5678',
     cep: '01234-567',
     endereco: 'Rua das Flores',

@@ -1,7 +1,7 @@
 import type { ItemCarrinho } from '../types/carrinho';
 import type { DadosCliente } from '../types/cliente';
 import type { ConfiguracaoLoja } from '../data/config';
-import { formatarReais, mascaraTelefone, mascaraCep } from './formatacao';
+import { formatarReais, mascaraTelefone, mascaraCep, mascaraCpf } from './formatacao';
 import { subtotal, totalPedido } from './preco';
 
 function linhasDoItem(item: ItemCarrinho, numero: number): string {
@@ -63,7 +63,7 @@ export function montarMensagem(
     ...itens.map((item, indice) => linhasDoItem(item, indice + 1)),
     `*TOTAL DO PEDIDO: ${formatarReais(totalPedido(itens))}*`,
     '*DADOS DO CLIENTE*',
-    `Nome: ${dados.nomeCompleto.trim()}\nTelefone: ${mascaraTelefone(dados.telefone)}`,
+    `Nome: ${dados.nomeCompleto.trim()}\nE-mail: ${dados.email.trim()}\nCPF: ${mascaraCpf(dados.cpf)}\nTelefone: ${mascaraTelefone(dados.telefone)}`,
     '*ENDEREÇO*',
     linhasDeEndereco.join('\n'),
   ];

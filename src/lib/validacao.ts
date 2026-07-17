@@ -87,6 +87,15 @@ export function validarDadosCliente(dados: DadosCliente): ResultadoValidacao {
     erros.nomeCompleto = 'Informe seu nome completo.';
   }
 
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(dados.email.trim())) {
+    erros.email = 'Informe um e-mail válido.';
+  }
+
+  const digitosCpf = dados.cpf.replace(/\D/g, '');
+  if (digitosCpf.length !== 11) {
+    erros.cpf = 'Informe um CPF válido.';
+  }
+
   const digitosTelefone = dados.telefone.replace(/\D/g, '');
   if (digitosTelefone.length < 10 || digitosTelefone.length > 11) {
     erros.telefone = 'Informe um telefone válido com DDD.';

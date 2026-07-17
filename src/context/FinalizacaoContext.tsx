@@ -10,6 +10,8 @@ import type { DadosCliente } from '../types/cliente';
 
 export const DADOS_CLIENTE_VAZIOS: DadosCliente = {
   nomeCompleto: '',
+  email: '',
+  cpf: '',
   telefone: '',
   cep: '',
   endereco: '',

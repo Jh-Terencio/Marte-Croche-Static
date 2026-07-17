@@ -151,10 +151,10 @@ export const produtos: Produto[] = [
     descricao:
       'Medidas aproximadas: \n- Largura: 26cm \n- Altura: 16cm',
     precoBaseCentavos: 15000,
-    imagensPadrao: ['/images/produtos/bolsa-venus/chocolate/01-principal.webp',
-          '/images/produtos/bolsa-venus/chocolate/02-principal.webp',
-          '/images/produtos/bolsa-venus/chocolate/03-principal.webp',
-          '/images/produtos/bolsa-venus/chocolate/04-principal.webp'
+    imagensPadrao: ['/images/produtos/bolsa-venus/padrao/01-principal.webp',
+          '/images/produtos/bolsa-venus/padrao/02-principal.webp',
+          '/images/produtos/bolsa-venus/padrao/03-principal.webp',
+          '/images/produtos/bolsa-venus/padrao/04-principal.webp'
         ],
     cores: [
       {

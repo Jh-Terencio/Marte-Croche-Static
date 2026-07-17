@@ -11,7 +11,7 @@ interface CampoTextoProps {
   /** Aplicada a cada digitação (ex.: mascaraTelefone, mascaraCep). */
   mascara?: (valor: string) => string;
   multilinha?: boolean;
-  inputMode?: 'text' | 'numeric' | 'tel';
+  inputMode?: 'text' | 'numeric' | 'tel' | 'email';
   autoComplete?: HTMLInputAutoCompleteAttribute;
   placeholder?: string;
   maxLength?: number;
