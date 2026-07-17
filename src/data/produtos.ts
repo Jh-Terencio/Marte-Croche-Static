@@ -217,6 +217,9 @@ export const produtos: Produto[] = [
         valorVisual: '#3b1d20',
         imagens: [
           '/images/produtos/bolsa-venus/chocolate/01-principal.webp',
+          '/images/produtos/bolsa-venus/chocolate/02-principal.webp',
+          '/images/produtos/bolsa-venus/chocolate/03-principal.webp',
+          '/images/produtos/bolsa-venus/chocolate/04-principal.webp',
         ],
       },
       {
