@@ -141,7 +141,7 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
-    informacoesAdicionais: 'Fecho de Imã Incluso',
+    informacoesAdicionais: 'Fecho de Imã Incluso - As medidas podem sofrer pequenas variações por serem feitas a mão',
     termosDeBusca: ['bolsa', 'croche', 'artesanal', 'marte', 'duas cores'],
   },
   {
@@ -286,6 +286,7 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
+    informacoesAdicionais: 'As medidas podem sofrer pequenas variações por serem feitas a mão',
     termosDeBusca: ['bolsa', 'croche', 'artesanal', 'venus', 'compacta', 'passeio'],
   },
   {
@@ -420,6 +421,7 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
+    informacoesAdicionais: 'As medidas podem sofrer pequenas variações por serem feitas a mão',
     termosDeBusca: ['bolsa', 'croche', 'artesanal', 'venus', 'mini', 'compacta', 'passeio'],
   },
   {
@@ -554,6 +556,7 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
+    informacoesAdicionais: 'As medidas podem sofrer pequenas variações por serem feitas a mão',
     termosDeBusca: ['bolsa', 'croche', 'artesanal', 'venus', 'mini', 'compacta', 'passeio'],
   },
   {
@@ -682,6 +685,7 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
+    informacoesAdicionais: 'As medidas podem sofrer pequenas variações por serem feitas a mão',
     termosDeBusca: ['bolsa', 'croche', 'artesanal', 'venus', 'mini', 'compacta', 'passeio'],
   },
   {
@@ -810,6 +814,115 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
+    informacoesAdicionais: 'As medidas podem sofrer pequenas variações por serem feitas a mão',
+    termosDeBusca: ['bolsa', 'croche', 'artesanal', 'jupter', 'compacta', 'passeio'],
+  },
+  {
+    id: 'shoulder-bag-eclipse',
+    nome: 'Shoulder Bag Eclipse',
+    categoriaId: 'bolsas',
+    descricao:
+      'Medidas aproximadas: \n- Largura: 14cm \n- Altura: 19cm',
+    precoBaseCentavos: 14000,
+    imagensPadrao: ['/images/produtos/shoulder-bag-eclipse/padrao/01-principal.webp'],
+    cores: [
+      {
+        id: 'vinho',
+        nome: 'Vinho',
+        valorVisual: '#681119',
+        imagens: [
+        ],
+      },
+      {
+        id: 'bege',
+        nome: 'Bege',
+        valorVisual: '#e4c5b0',
+        imagens: [],
+      },
+      {
+        id: 'branco',
+        nome: 'Branco',
+        valorVisual: '#f0eff4',
+        imagens: [],
+      },
+      {
+        id: 'azul-marinho',
+        nome: 'Azul Marinho',
+        valorVisual: '#383757',
+        imagens: [
+        ],
+      },
+      {
+        id: 'amarelo-manteiga',
+        nome: 'Amarelo Manteiga',
+        valorVisual: '#efc96e',
+        imagens: [],
+      },
+      {
+        id: 'rosa-bebe',
+        nome: 'Rosa Bebê',
+        valorVisual: '#fdcee1',
+        imagens: [],
+      },
+      {
+        id: 'azul-bebe',
+        nome: 'Azul Bebê',
+        valorVisual: '#ceebf6',
+        imagens: [],
+      },
+      {
+        id: 'lavanda',
+        nome: 'Lavânda',
+        valorVisual: '#c195d2',
+        imagens: [],
+      },
+      {
+        id: 'esmeralda',
+        nome: 'Esmeralda',
+        valorVisual: '#0f5555',
+        imagens: [],
+      },
+      {
+        id: 'chocolate',
+        nome: 'Chocolate',
+        valorVisual: '#3b1d20',
+        imagens: [
+        ],
+      },
+      {
+        id: 'preto',
+        nome: 'Preto',
+        valorVisual: '#0c0c17',
+        imagens: [
+          '/images/produtos/shoulder-bag-eclipse/preto/01-principal.webp',
+        ],
+      },
+      {
+        id: 'grafite',
+        nome: 'Grafite',
+        valorVisual: '#413e45',
+        imagens: [],
+      },
+    ],
+    permiteCorRepetida: true,
+    permiteDuasCores: true,
+    adicionais: [
+      {
+        id: 'fecho-ima',
+        nome: 'Fecho de Imã',
+        precoCentavos: 2000,
+        opcoes: [],
+      },
+      {
+        id: 'alca-corrente',
+        nome: 'Alça de Corrente',
+        precoCentavos: 4500,
+        opcoes: [],
+      },
+    ],
+    prazoConfeccao: '7 a 10 dias úteis',
+    disponivel: true,
+    informacoesAdicionais: 'As medidas podem sofrer pequenas variações por serem feitas a mão',
     termosDeBusca: ['bolsa', 'croche', 'artesanal', 'jupter', 'compacta', 'passeio'],
   },
   {
@@ -905,6 +1018,7 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
+    informacoesAdicionais: 'As medidas podem sofrer pequenas variações por serem feitas a mão',
     termosDeBusca: ['alca', 'croche', 'artesanal', 'espiral'],
   },
   {
@@ -923,6 +1037,7 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
+    informacoesAdicionais: 'As medidas podem sofrer pequenas variações por serem feitas a mão',
     termosDeBusca: ['alca', 'correte', 'niquel', 'metal'],
   },
   {
@@ -1019,6 +1134,7 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
+    informacoesAdicionais: 'As medidas podem sofrer pequenas variações por serem feitas a mão',
     termosDeBusca: ['alca', 'croche', 'artesanal', 'longa'],
   },
   {
@@ -1114,6 +1230,7 @@ export const produtos: Produto[] = [
     ],
     prazoConfeccao: '7 a 10 dias úteis',
     disponivel: true,
+    informacoesAdicionais: 'As medidas podem sofrer pequenas variações por serem feitas a mão',
     termosDeBusca: ['capinha', 'croche', 'artesanal', 'fone'],
   },
 ];
