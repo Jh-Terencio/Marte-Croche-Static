@@ -693,7 +693,7 @@ export const produtos: Produto[] = [
     nome: 'Bolsa Jupter G',
     categoriaId: 'bolsas',
     descricao:
-      'Medidas aproximadas: \n- Largura: 43cm \n- Altura: 33cm',
+      'Medidas aproximadas: \n- Largura: 42cm \n- Altura: 32cm',
     precoBaseCentavos: 26000,
     imagensPadrao: ['/images/produtos/bolsa-jupter-g/padrao/01-principal.webp'],
     cores: [
