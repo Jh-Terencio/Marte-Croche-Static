@@ -295,7 +295,7 @@ export const produtos: Produto[] = [
     categoriaId: 'bolsas',
     descricao:
       'Medidas aproximadas: \n- Largura: 19cm \n- Altura: 13cm',
-    precoBaseCentavos: 9000,
+    precoBaseCentavos: 11000,
     imagensPadrao: ['/images/produtos/bolsa-venus-mini/padrao/01-principal.webp'],
     cores: [
       {
@@ -430,7 +430,7 @@ export const produtos: Produto[] = [
     categoriaId: 'bolsas',
     descricao:
       'Medidas aproximadas: \nVênus \n- Largura: 26cm \n- Altura: 16cm \nVênus Mini \n- Largura: 19cm \n- Altura: 13cm',
-    precoBaseCentavos: 22000,
+    precoBaseCentavos: 24000,
     imagensPadrao: ['/images/produtos/bolsa-venus-e-mini/padrao/01-principal.webp'],
     cores: [
       {
